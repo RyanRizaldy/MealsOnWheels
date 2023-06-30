@@ -9,14 +9,14 @@ import { Button } from 'react-bootstrap';
 function Member(){
     return(
         <>
-        <div style={{backgroundColor:"rgb(255, 235, 214)"}}>
-        <Container className='userInfoContainer'>
+        <div className='userInfoContainer'>
+        <Container>
             <Row>
                 <Col lg={12} md={12} sm={12}>
                     <p style={{textAlign:"right",margin:"15px"}}>Edit</p>
                 </Col>
                 <Col lg={4} md={12} sm={12} className="userPic">
-                <img src={pic} alt="Logo" height={"150px"}/>
+                <img src={pic} alt="Logo" height={"150px"} className='rounded-circle'/>
                 <div>
                     <h5>Member Name</h5>
                 </div>

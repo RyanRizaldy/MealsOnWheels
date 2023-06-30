@@ -55,6 +55,7 @@ input[type="email"],input[type="password"],input[type="text"]{
   text-decoration: none!important;
   color: #fff;
 }
+
 .footerLink li{
   list-style:none;
   margin-top: 30px;
@@ -131,7 +132,6 @@ input[type="email"],input[type="password"],input[type="text"]{
 /*-------------------- DASBOARD --------------------*/
 .userInfoContainer{
   background-color: rgb(255, 235, 214);
-  border-radius: 15px;
   padding-bottom: 100px;
   margin-bottom: 3%;
   /* margin-top: 5%; */
@@ -164,6 +164,11 @@ input[type="email"],input[type="password"],input[type="text"]{
   margin-bottom: 20%;
   padding-bottom: 100px;
 }
+.contentWrapper2{
+  background-color: #f3f3f3;
+  margin-bottom: 3%;
+  padding-bottom: 10px;
+}
 .cardWrapper{
   padding: 10px  ;
   
@@ -175,7 +180,11 @@ input[type="email"],input[type="password"],input[type="text"]{
   padding: 15px;
   
 }
-.card h5,h4{
+.card h5{
+  font-weight: bold;
+  text-align: center;
+}
+.card h4{
   font-weight: bold;
   text-align: center;
 }
@@ -193,4 +202,18 @@ input[type="email"],input[type="password"],input[type="text"]{
 .cardStatus{
   padding: 15px 20px;
   margin-top:  50px; 
+}
+
+/*-------------------- HOME --------------------*/
+.banner{
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.bannerWrapper{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-bottom: 0;
 }
