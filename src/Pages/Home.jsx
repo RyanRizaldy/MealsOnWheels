@@ -19,7 +19,7 @@ export default function Home() {
             <h1>Healty Senior <br/> Meal delivery</h1>
             <div className='bannerButton'>
             <Button variant="dark" className='navButton' style={{margin:'0'}}>Get Started</Button>
-            <button  className='navButton' style={{background:'rgba(0,0,0,0.0)',paddingLeft:'40px',paddingRight:'40px'}}>Menu</button>
+            <button  className='navButton menuButton' style={{background:'rgba(0,0,0,0.0)',paddingLeft:'40px',paddingRight:'40px'}} >Menu</button>
             </div>
         </Container>
         <img src={banner} />   

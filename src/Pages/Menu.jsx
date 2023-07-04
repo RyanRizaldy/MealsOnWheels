@@ -14,7 +14,7 @@ export default function Menu() {
         <h3 className="fw-normal">
           No Prep, No Cooking.<span className="fw-bolder">Just Enjoy.</span>{" "}
         </h3>
-        <p className="fw-bolder mt-3" style={{ fontSize: 78 }}>
+        <p className="fw-bolder mt-3 ourMenu">
           {" "}
           Our menu
         </p>
@@ -56,15 +56,15 @@ export default function Menu() {
                 <h6>
                   Lemon Poppy Seed Pancakes with Sausage and Berry 
                 </h6>
-                <div className="reciveWrapper mt-4 text-center">
+                <div className=" mt-4 text-center">
                   <div>
                     <p className="my-2">580 Cal</p>
                     <Row>
-                      <Col>49 Carbs</Col>
+                      <Col>49<br/>Carbs</Col>
                       <Col>
                         30g <br /> Fat
                       </Col>
-                      <Col>30g Protein</Col>
+                      <Col>30g <br/>Protein</Col>
                     </Row>
                     <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
                       + Add
@@ -77,15 +77,15 @@ export default function Menu() {
               <div className="card">
                 <img src={food1} alt="Logo" />
                 <h6>Salmon Burger with Harissa Carrots</h6>
-                <div className="reciveWrapper mt-4 text-center">
+                <div className=" mt-4 text-center">
                   <div>
                     <p className="my-2">580 Cal</p>
                     <Row>
-                      <Col>49 Carbs</Col>
+                      <Col>49<br/>Carbs</Col>
                       <Col>
                         30g <br /> Fat
                       </Col>
-                      <Col>30g Protein</Col>
+                      <Col>30g <br/>Protein</Col>
                     </Row>
                     <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
                       + Add
@@ -98,15 +98,15 @@ export default function Menu() {
               <div className="card">
                 <img src={food2} alt="Logo" />
                 <h6>Dill-Chimichurri Shrimp with Roasted Summer Vegetables</h6>
-                <div className="reciveWrapper mt-4 text-center">
+                <div className=" mt-4 text-center">
                   <div>
                     <p className="my-2">580 Cal</p>
                     <Row>
-                      <Col>49 Carbs</Col>
+                      <Col>49<br/> Carbs</Col>
                       <Col>
                         30g <br /> Fat
                       </Col>
-                      <Col>30g Protein</Col>
+                      <Col>30g <br/>Protein</Col>
                     </Row>
                     <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
                       + Add
@@ -121,15 +121,15 @@ export default function Menu() {
                 <h6>
                   Lemon Poppy Seed Pancakes with Sausage and Berry 
                 </h6>
-                <div className="reciveWrapper mt-4 text-center">
+                <div className=" mt-4 text-center">
                   <div>
                     <p className="my-2">580 Cal</p>
                     <Row>
-                      <Col>49 Carbs</Col>
+                      <Col>49<br/> Carbs</Col>
                       <Col>
                         30g <br /> Fat
                       </Col>
-                      <Col>30g Protein</Col>
+                      <Col>30g <br/>Protein</Col>
                     </Row>
                     <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
                       + Add
@@ -144,15 +144,15 @@ export default function Menu() {
                 <h6>
                   Lemon Poppy Seed Pancakes with Sausage and Berry 
                 </h6>
-                <div className="reciveWrapper mt-4 text-center">
+                <div className=" mt-4 text-center">
                   <div>
                     <p className="my-2">580 Cal</p>
                     <Row>
-                      <Col>49 Carbs</Col>
+                      <Col>49<br/> Carbs</Col>
                       <Col>
                         30g <br /> Fat
                       </Col>
-                      <Col>30g Protein</Col>
+                      <Col>30g <br/>Protein</Col>
                     </Row>
                     <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
                       + Add

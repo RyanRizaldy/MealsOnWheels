@@ -10,7 +10,7 @@ export default function About() {
     <>
       <div className="mx-5 my-5">
         <Row>
-          <Col className="align-self-center ">
+          <Col className="align-self-center " lg={6} md={6} sm={12}>
             <h1 className="fw-bolder mb-4">Healthy Food For Busy People</h1>
             <p className="pe-4">
               Snap was established on the principle that real food should be
@@ -18,14 +18,14 @@ export default function About() {
               that people are excited to eat.
             </p>
           </Col>
-          <Col className="text-center">
+          <Col className="text-center imgContainer" lg={6} md={6} sm={12}>
             <img src={picture} width={480} height={597} alt="" />
           </Col>
         </Row>
       </div>
       <div className="mx-5 my-5">
         <Row>
-          <Col className="text-center " md={8}>
+          <Col className="text-center " md={8} > 
             <img src={Food} className="img-fluid" height={416} alt="" />
           </Col>
           <Col className="align-self-center px-5 text-start" md={4}>
@@ -64,7 +64,7 @@ export default function About() {
           </p>
         </Row>
         <Row className="justify-content-between my-5 p-3 ">
-          <Col className="px-5">
+          <Col lg={6} md={6} sm={12} >
             <h4 className="fw-bold my-3">
               We’ve been giving back since day one
             </h4>
@@ -73,7 +73,7 @@ export default function About() {
               inception in 2010.
             </p>
           </Col>
-          <Col className="px-5">
+          <Col lg={6} md={6} sm={12} >
             <h4 className="fw-bold my-3">Sustainability matters</h4>
             <p>
               Every bit of our packaging is recyclable; the bag, the liners, gel
@@ -81,7 +81,7 @@ export default function About() {
             </p>
           </Col>
         </Row>
-        <Row className="px-5">
+        <Row >
           <h4 className="fw-bold my-3">
             Let’s change the world, one meal at a time
           </h4>

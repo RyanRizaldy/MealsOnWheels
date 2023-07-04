@@ -57,6 +57,12 @@ input[type="email"],input[type="password"],input[type="text"]{
   .navLogin button{
     display: none;
   }
+
+}
+@media only screen and (max-width: 480px){
+.navbar{
+  padding:10px 0;
+}
 }
 
 /*-------------------- FOOTER --------------------*/
@@ -152,7 +158,17 @@ input[type="email"],input[type="password"],input[type="text"]{
   border: none;
   margin-bottom: 100px;
 }
+
 }
+@media only screen and (max-width: 480px){
+.accountChoice{
+  padding:0 50px ;
+}
+.loginButton{
+padding:15px 110px ;
+}
+}
+
 
 /*-------------------- REGISTER --------------------*/
 .registerForm h1{
@@ -164,6 +180,12 @@ input[type="email"],input[type="password"],input[type="text"]{
 .registerImg{
   display: none;
 }
+
+}
+@media only screen and (max-width: 480px){
+  .registerForm h1{
+    font-size: 60px;
+  }
 }
 
 /*-------------------- DASBOARD --------------------*/
@@ -308,4 +330,61 @@ width: 100%;
     text-align: center;
     margin-bottom: 30px;
   }
+}
+@media only screen and (max-width: 480px){
+  .bannerText h1{
+    font-size: 20px;
+    line-height:20px;
+    
+  }
+  .bannerText button{
+    padding:10px;
+    font-size: 15px;
+  }
+  .menuButton{
+    display: none;
+  }
+}
+/*-------------------- MENU  --------------------*/
+.ourMenu{
+  font-size: 72px;
+}
+@media only screen and (max-width: 480px){
+.ourMenu{
+  font-size: 60px;
+}
+.cardWrapper h6{
+  font-size: 30px;
+}
+.reciveWraper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+}
+/*-------------------- CONTACT  --------------------*/
+.contactLabel{
+  padding:0 30px
+  
+}
+.contactButton{
+ padding: 0 200px;   
+}
+@media only screen and (max-width: 480px){
+.contactLabel{
+  padding: 0;
+}
+.contactButton{
+  padding: 100px;
+}
+}
+/*-------------------- ABOUT  --------------------*/
+.imgContainer{
+ 
+}
+@media only screen and (max-width: 480px){
+.imgContainer img{
+  width: 300px;
+  margin-top: 30px;
+}
 }

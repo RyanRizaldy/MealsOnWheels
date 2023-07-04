@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import pic from "../image/rothy.png";
 import food from "../image/pancake.jpg";
 import { Button } from "react-bootstrap";
-import { Table } from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 
@@ -56,7 +56,8 @@ function Admin() {
               <h4 className="my-3 text-start">Member</h4>
             </Container>
             <Container>
-              <Table striped className="border">
+              <Row>
+              <Table striped    responsive className="border">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -73,9 +74,14 @@ function Admin() {
                     <td>mark@gmail.com</td>
                     <td>Sukabumi, Jabar</td>
                     <td className="justify-content-between">
+                      <Row>
+                        <Col lg={2} md={6} sm={12}>
                       <Button className="btn btn-primary mx-2 ">Edit</Button>
-
+                        </Col>
+                        <Col lg={2} md={6} sm={12}>
                       <Button className="btn btn-danger">Delete</Button>
+                      </Col>
+                      </Row>
                     </td>
                   </tr>
                   <tr>
@@ -91,6 +97,7 @@ function Admin() {
                   </tr>
                 </tbody>
               </Table>
+              </Row>
             </Container>
           </Tab>
           <Tab eventKey="Order" title="Order">
@@ -98,7 +105,8 @@ function Admin() {
               <h4 className="my-3 text-start">Order</h4>
             </Container>
             <Container>
-              <Table striped className="border">
+             
+              <Table striped  responsive className="border">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -136,6 +144,7 @@ function Admin() {
                   </tr>
                 </tbody>
               </Table>
+             
             </Container>
           </Tab>
         </Tabs>

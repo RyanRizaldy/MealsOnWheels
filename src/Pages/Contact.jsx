@@ -18,9 +18,9 @@ export default function Contact() {
 
         <Form className="pe-4">
           <Row className="justify-content-between">
-            <Col>
-              <Form.Group className="formInput mb-3 me-5">
-                <Form.Label>Your Name</Form.Label>
+            <Col lg={6} md={6} sm={12} className='contactLabel'>
+              <Form.Group className="formInput mb-3 ">
+                <Form.Label >Your Name</Form.Label>
                 <Form.Control
                   style={{ outline: "none", boxShadow: "none" }}
                   type="text"
@@ -28,9 +28,9 @@ export default function Contact() {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col lg={6} md={6} sm={12} className='contactLabel'>
               <Form.Group className="formInput mb-2">
-                <Form.Label>Your Email</Form.Label>
+                <Form.Label >Your Email</Form.Label>
                 <Form.Control
                   style={{ outline: "none", boxShadow: "none" }}
                   type="text"
@@ -50,9 +50,8 @@ export default function Contact() {
             </Form.Group>
           </Row>
         </Form>
-        <div className='text-center mt-4'>
-          <Button variant='dark' className='w-25 py-3 rounded-5'>
-            Send 
+        <div className='text-center mt-4 '>
+          <Button variant='dark' className=' py-3 rounded-5 contactButton'>Send 
           </Button>
         </div>
       </Container>
