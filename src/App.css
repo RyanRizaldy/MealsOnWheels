@@ -140,9 +140,7 @@ input[type="email"],input[type="password"],input[type="text"]{
   display: flex;
   flex-direction: column;
   align-items:center;
-  justify-content: center;
- 
-  
+  justify-content: center; 
 }
 .userPic h5{
   margin-top: 20px;
@@ -177,7 +175,11 @@ input[type="email"],input[type="password"],input[type="text"]{
   padding: 15px;
   
 }
-.card h5,h4{
+.card h5{
+  font-weight: semibold;
+  text-align: center;
+}
+.card h4{
   font-weight: semibold;
   text-align: center;
 }
@@ -195,4 +197,44 @@ input[type="email"],input[type="password"],input[type="text"]{
 .cardStatus{
   padding: 15px 20px;
   margin-top:  50px; 
+}
+/*-------------------- HOME  --------------------*/
+.banner{
+position:relative;
+height: 100%;
+width: 100%;
+
+}
+.banner img{
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+.bannerText{
+  position: absolute;
+  margin: 10% 50px;
+  
+}
+.bannerText h1{
+  font-size: 70px;
+  line-height: 80px;
+  font-weight: bolder ;
+}
+.whyUs{
+  background-color:rgba(232,208,188,1);
+}
+.whyUs h3{
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+.bestMealOption{
+  margin-bottom: 30px;
+}
+.bestMealOption h4{
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.reason{
+  display: flex;
+  margin-bottom: 30px;
 }
