@@ -107,7 +107,7 @@ export default function Home() {
                 </Col>
                 <Col lg={4} md={4} sm={12}>
                     <div className='reason'>
-                    <img src={delivery} height="100px"/>
+                    <img src={delivery} height="100px" alt='delivery'/>
                         <div style={{marginTop:'30px'}}>
                             <h4>healthy and delicious</h4>
                             <p>
@@ -125,7 +125,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div className='reason'>
-                    <img src={phone} height="100px"/>
+                    <img src={phone} height="100px" alt='phone'/>
                         <div style={{marginTop:'30px'}}>
                             <h4>Our customer love us</h4>
                             <p>
