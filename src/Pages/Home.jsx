@@ -55,7 +55,7 @@ export default function Home() {
             <Row>
                 <Col lg={5} md={5} sm={12}>
                 <h1 style={{fontSize:'60px',lineHeight:'60px',fontWeight:'bolder'}}>Why Our <br/>meals are <br/>the best</h1>
-                <Button variant='dark' className='reciveButton'  style={{marginTop:'5px'}}>See Menu</Button>
+                <Button variant='dark' className='reciveButton'  style={{marginTop:'20px'}}>See Menu</Button>
                 </Col>
                 <Col lg={7} md={7} sm={12}>
                 <Row>
@@ -92,7 +92,7 @@ export default function Home() {
         <div style={{padding:'50px',backgroundColor:'#f3f3f3'}}>
             <Row>
                 <Col lg={4} md={4} sm={12}>
-                    <h1 style={{fontWeight:'bold'}}>
+                    <h1 style={{fontWeight:'bold',marginBottom:'20px'}}>
                         No shopping.<br/>
                         No cooking.<br/>
                         No dishes.
@@ -100,7 +100,7 @@ export default function Home() {
                     <p>
                         Our customers on average save over 4 hours a week on shopping, cooking, and cleaning, giving you more time to do the things you love
                     </p>
-                    <Button variant='dark' className='reciveButton'  style={{marginTop:'5px'}}>See Menu</Button>
+                    <Button variant='dark' className='reciveButton'  style={{marginTop:'20px'}}>See Menu</Button>
                 </Col>
                 <Col lg={4} md={4} sm={12}>
 
