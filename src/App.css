@@ -5,9 +5,11 @@ p,h1,h2,h3,h4,h5,h6{
 input[type="email"],input[type="password"],input[type="text"]{
   border: none;
   outline: none;
+  box-sizing: none;
   border-bottom: 1px solid #ccc;
   border-radius: 0;
 }
+
 .option{
   border: none;
   outline: none;
@@ -170,14 +172,20 @@ input[type="email"],input[type="password"],input[type="text"]{
 }
 .card{
   background-color: white;
-  margin-top: 50px;
+  margin-top: 20px;
   border: none;
   padding: 15px;
   
 }
 .card h5{
-  font-weight: semibold;
+  font-weight: bold;
   text-align: center;
+  
+}
+.card h6{
+  font-weight: bolder;
+  text-align: center;
+  
 }
 .card h4{
   font-weight: semibold;
