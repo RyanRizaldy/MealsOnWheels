@@ -44,7 +44,7 @@ function Register(){
                     </div>
                 </Col>
                 <Col lg={6} md={6} sm={12}>
-                    <div>
+                    <div className='registerImg'>
                     <img src={Img} alt="Logo" />
                     </div>
                     

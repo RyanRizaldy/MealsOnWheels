@@ -53,7 +53,7 @@ export default function Home() {
     <div className='userInfoContainer' style={{marginBottom:'0'}}>
         <Container style={{padding:'150px 0'}}>
             <Row>
-                <Col lg={5} md={5} sm={12}>
+                <Col lg={5} md={5} sm={12} className="bestMeal">
                 <h1 style={{fontSize:'60px',lineHeight:'60px',fontWeight:'bolder'}}>Why Our <br/>meals are <br/>the best</h1>
                 <Button variant='dark' className='reciveButton'  style={{marginTop:'20px'}}>See Menu</Button>
                 </Col>

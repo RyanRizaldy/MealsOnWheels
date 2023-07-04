@@ -44,6 +44,18 @@ input[type="email"],input[type="password"],input[type="text"]{
   margin: 0 10px;
   padding:15px;
 }
+@media only screen and (max-width: 600px){
+  .navLogin{
+    justify-content:left;
+  }
+  .navLogin a{
+    margin:10px 0!important;
+    font-weight:normal !important;
+  }
+  .navLogin button{
+    display: none;
+  }
+}
 
 /*-------------------- FOOTER --------------------*/
 .footer{
@@ -73,7 +85,19 @@ input[type="email"],input[type="password"],input[type="text"]{
   display: flex;
   justify-content:space-between;
 }
-
+@media only screen and (max-width: 600px){
+  .footerLogoContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom:30px ;
+  }
+  .footer{
+    text-align: center;
+  }
+  .footerLink{
+    margin-bottom:30px ;
+  }
+}
 /*-------------------- LOGIN --------------------*/
 .loginContainer{
   margin-top: 10%;
@@ -120,6 +144,13 @@ input[type="email"],input[type="password"],input[type="text"]{
   background:white;
   border: 1px solid black
 }
+@media only screen and (max-width: 600px){
+.loginForm{
+  padding: 0 20px;
+  border: none;
+  margin-bottom: 100px;
+}
+}
 
 /*-------------------- REGISTER --------------------*/
 .registerForm h1{
@@ -127,14 +158,18 @@ input[type="email"],input[type="password"],input[type="text"]{
   line-height: 80px;
   margin-bottom: 50px;
 }
+@media only screen and (max-width: 600px){
+.registerImg{
+  display: none;
+}
+}
 
 /*-------------------- DASBOARD --------------------*/
 .userInfoContainer{
   background-color: rgb(255, 235, 214);
-  border-radius: 15px;
   padding-bottom: 100px;
   margin-bottom: 3%;
-  /* margin-top: 5%; */
+  
 }
 .userPic{
   display: flex;
@@ -161,7 +196,7 @@ input[type="email"],input[type="password"],input[type="text"]{
 }
 .contentWrapper{
   background-color: #f3f3f3;
-  margin-bottom: 20%;
+  margin-bottom: 50px;
   padding-bottom: 100px;
 }
 .cardWrapper{
@@ -197,6 +232,11 @@ input[type="email"],input[type="password"],input[type="text"]{
 .cardStatus{
   padding: 15px 20px;
   margin-top:  50px; 
+}
+@media only screen and (max-width: 600px){
+.userInfoContainer{
+  padding-left: 20px;
+}
 }
 /*-------------------- HOME  --------------------*/
 .banner{
@@ -237,4 +277,27 @@ width: 100%;
 .reason{
   display: flex;
   margin-bottom: 30px;
+}
+@media only screen and (max-width: 600px){
+  .bannerText h1{
+    font-size: 30px;
+    line-height:40px;
+    
+  }
+  .bannerText{
+    margin-left: 0;
+  }
+  .whyUs{
+    text-align: center;
+  }
+  .whyUs p{
+    margin-bottom: 30px;
+  }
+  .bestMealOption{
+    text-align: center;
+  }
+  .bestMeal{
+    text-align: center;
+    margin-bottom: 30px;
+  }
 }
