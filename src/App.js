@@ -10,9 +10,10 @@ import Admin from "./Pages/Adm";
 import Partner from "./Pages/Partner";
 import Home from "./Pages/Home";
 import Menu from "./Pages/Menu";
-import Help from "./Pages/Help";
-import Stores from "./Pages/Stores";
-import Blog from "./Pages/Blog";
+import Driver from "./Pages/DriverDashboard";
+import Volunteer from "./Pages/VolunteerDashboard";
+import Contact from "./Pages/Contact";
+import About from "./Pages/About";
 
 function App() {
   return (
@@ -23,11 +24,16 @@ function App() {
     <Route path="/" element={<Home/>}/>
     <Route path="/Partner" element={<Partner/>}/>
     <Route path="/Menu" element={<Menu/>}/>
-    <Route path="/Help" element={<Help/>}/>
-    <Route path="/Stores" element={<Stores/>}/>
-    <Route path="/Blog" element={<Blog/>}/>
+    <Route path="/Contact" element={<Contact/>}/>
+    <Route path="/About" element={<About/>}/>
     <Route path="/Login" element={<Login/>}/>
+    <Route path="/Driver" element={<Driver/>}/>
+    <Route path="/Member" element={<Member/>}/>
+    <Route path="/Volunteer" element={<Volunteer/>}/>
     <Route path="/Admin" element={<Admin/>}/>
+    <Route path="/Register" element={<Register/>}/>
+   
+
   </Routes>
 </Router>
 <Footer />

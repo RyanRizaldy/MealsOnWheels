@@ -40,63 +40,9 @@ function Driver(){
         </Container>
         </div>
 
-        <Container className='contentTitle'>
-            <h2>Help Us Prepare Meals For the Member</h2>
-        </Container>
-
-        <div className='contentWrapper'>
-        <Container>
-            <Row>
-                <Col lg={12}>
-
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                    <div className='card'>
-                        <h5 style={{fontWeight:"bold",marginBottom:'20px'}}>Meals Plan 1</h5>
-                        <h5 >Member name</h5>
-                        <h4 style={{margin:"50px 0"}}>this will be the address of member</h4>
-                        <div className='reciveWrapper'> 
-                        <Button variant='dark' className='reciveButton' >Take Order</Button>
-                        </div>
-                    </div>
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                    <div className='card'>
-                        <h5 style={{fontWeight:"bold",marginBottom:'20px'}}>Meals Plan 1</h5>
-                        <h5 >Member name</h5>
-                        <h4 style={{margin:"50px 0"}}>this will be the address of member</h4>
-                        <div className='reciveWrapper'> 
-                        <Button variant='dark' className='reciveButton' >Take Order</Button>
-                        </div>
-                    </div>
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                    <div className='card'>
-                        <h5 style={{fontWeight:"bold",marginBottom:'20px'}}>Meals Plan 1</h5>
-                        <h5 >Member name</h5>
-                        <h4 style={{margin:"50px 0"}}>this will be the address of member</h4>
-                        <div className='reciveWrapper'> 
-                        <Button variant='dark' className='reciveButton' >Take Order</Button>
-                        </div>
-                    </div>
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                    <div className='card'>
-                        <h5 style={{fontWeight:"bold",marginBottom:'20px'}}>Meals Plan 1</h5>
-                        <h5 >Member name</h5>
-                        <h4 style={{margin:"50px 0"}}>this will be the address of member</h4>
-                        <div className='reciveWrapper'> 
-                        <Button variant='dark' className='reciveButton' >Take Order</Button>
-                        </div>
-                    </div>
-                </Col>
-               
-            </Row>
-        </Container>
-        </div>
 
         <Container className='contentTitle'>
-            <h2>Help Us Prepare Meals For the Member</h2>
+            <h2>Help Us Deliver Meals For the Member</h2>
         </Container>
 
         <div className='contentWrapper'>

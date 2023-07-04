@@ -31,7 +31,7 @@ function Login(){
                     <div className='accountChoice'>
                         <h2>No Account ?</h2>
                         <div className='loginButtonWrapper'>
-                            <Button variant='dark' className='accountButton'>Register</Button>
+                            <Button variant='dark' href='Register' className='accountButton'>Register</Button>
                         </div>
                         <h2 style={{marginTop:'20px'}}>or</h2>
                         <div className='loginButtonWrapper'>

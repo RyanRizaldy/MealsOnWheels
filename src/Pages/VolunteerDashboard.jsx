@@ -40,11 +40,12 @@ function Volunteer(){
         </Container>
         </div>
 
+
         <Container className='contentTitle'>
             <h2>Help Us Prepare Meals For the Member</h2>
         </Container>
 
-        <div className='contentWrapper2'>
+        <div className='contentWrapper'>
         <Container>
             <Row>
                 <Col lg={12}>
@@ -94,7 +95,6 @@ function Volunteer(){
             </Row>
         </Container>
         </div>
-
         <Container className='contentTitle'>
             <h2>Help Us Deliver Meals For the Member</h2>
         </Container>
