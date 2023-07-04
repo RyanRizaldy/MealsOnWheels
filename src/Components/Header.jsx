@@ -11,8 +11,8 @@ function Header() {
           <Navbar.Brand href="/"><img src={Logo} alt="Logo" height={"40px"}/></Navbar.Brand>
           <Nav className="me-auto navMenu">
             <Nav.Link href="Menu">Menu</Nav.Link>
-            <Nav.Link href="About">About Us</Nav.Link>
-            <Nav.Link href="Contact">Contact Us</Nav.Link>
+            <Nav.Link href="About">About</Nav.Link>
+            <Nav.Link href="Contact">Contact</Nav.Link>
           
           </Nav>
           <div className="navLogin">
