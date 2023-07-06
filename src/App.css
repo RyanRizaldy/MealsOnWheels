@@ -176,6 +176,12 @@ padding:15px 110px ;
   line-height: 80px;
   margin-bottom: 50px;
 }
+.registerAs{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
 @media only screen and (max-width: 600px){
 .registerImg{
   display: none;
