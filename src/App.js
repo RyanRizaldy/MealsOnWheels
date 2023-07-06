@@ -15,7 +15,6 @@ import Volunteer from "./Pages/VolunteerDashboard";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Terms from "./Pages/Terms";
-import Location from "./Pages/Location";
 
 function App() {
   return (
@@ -35,7 +34,6 @@ function App() {
     <Route path="/Admin" element={<Admin/>}/>
     <Route path="/Register" element={<Register/>}/>
     <Route path="/Terms" element={<Terms/>}/>
-    <Route path="/Location" element={<Location/>}/>
    
 
   </Routes>
