@@ -28,7 +28,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>User Name</Form.Label>
+      <Form.Label>Username</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -74,12 +74,12 @@ function Register(){
     </Button>
   </div>
   </>;
-  } else if (selectedOption === 'patner') {
+  } else if (selectedOption === 'Partner') {
     content =
     <>
     <Form className='px-4'>
     <Form.Group className="formInput mb-3">
-      <Form.Label>Name</Form.Label>
+      <Form.Label>Full Name</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -146,7 +146,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>User Name</Form.Label>
+      <Form.Label>Username</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -205,7 +205,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>User Name</Form.Label>
+      <Form.Label>Username</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -264,7 +264,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>User Name</Form.Label>
+      <Form.Label>Username</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -307,8 +307,8 @@ function Register(){
                 <Button className={selectedOption === 'member' ? 'active' : ''}onClick={() => handleOptionChange('member')} variant="outline">
                   Member
                 </Button>
-                <Button className={selectedOption === 'patner' ? 'active' : ''}onClick={() => handleOptionChange('patner')} variant="outline">
-                  Patner
+                <Button className={selectedOption === 'Partner' ? 'active' : ''}onClick={() => handleOptionChange('Partner')} variant="outline">
+                  Partner
                 </Button>
                 <Button className={selectedOption === 'driver' ? 'active' : ''}onClick={() => handleOptionChange('driver')} variant="outline">
                   Driver
