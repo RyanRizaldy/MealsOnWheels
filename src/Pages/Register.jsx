@@ -74,7 +74,7 @@ function Register(){
     </Button>
   </div>
   </>;
-  } else if (selectedOption === 'patner') {
+  } else if (selectedOption === 'partner') {
     content =
     <>
     <Form className='px-4'>
@@ -304,11 +304,11 @@ function Register(){
               <div className="registerForm">
                 <h1>Register, and Start Sharing Love</h1>
                 <div className='registerAs'>
-                <Button className={selectedOption === 'member' ? 'active' : ''}onClick={() => handleOptionChange('member')} variant="outline">
+                <Button className={selectedOption === 'member' ? 'active' : ''} onClick={() => handleOptionChange('member')} variant="outline">
                   Member
                 </Button>
-                <Button className={selectedOption === 'patner' ? 'active' : ''}onClick={() => handleOptionChange('patner')} variant="outline">
-                  Patner
+                <Button className={selectedOption === 'partner' ? 'active' : ''}onClick={() => handleOptionChange('partner')} variant="outline">
+                  Partner
                 </Button>
                 <Button className={selectedOption === 'driver' ? 'active' : ''}onClick={() => handleOptionChange('driver')} variant="outline">
                   Driver

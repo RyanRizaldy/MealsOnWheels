@@ -31,7 +31,7 @@ return (
               <h4>About</h4>
               <ul>
                 <li>
-                  <a href="Register">Become Patner</a>
+                  <a href="Register">Become Partner</a>
                 </li>
                 <li>
                   <a href="Donation">Donation</a>
