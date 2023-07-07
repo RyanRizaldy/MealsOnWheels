@@ -29,13 +29,13 @@ function Admin() {
                 height={"150px"}
               />
               <div>
-                <h5>Member Name</h5>
+                <h5>Chlarisa</h5>
               </div>
             </Col>
             <Col lg={4} md={6} sm={12}>
               <div className="userInfo">
                 <h5>Email</h5>
-                <p>example.test@gmail.com</p>
+                <p>admin@gmail.com</p>
               </div>
             </Col>
             <Col lg={4} md={6} sm={12}>

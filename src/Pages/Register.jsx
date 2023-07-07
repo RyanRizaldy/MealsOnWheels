@@ -12,6 +12,12 @@ function Register(){
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
+ 
+
+
+
+
+
 
   let content;
 
@@ -44,7 +50,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>Addresss</Form.Label>
+      <Form.Label>Address</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
