@@ -131,10 +131,7 @@ function Driver(){
                   <h5>Status</h5>
                   <p>Member</p>
                   </div>
-                  <div className='userInfo'>
-                  <h5>Meal plan active</h5>
-                  <p>Meal plan 1</p>
-                  </div>
+                  
                   </Col>
                   </Row>
                   </Container>

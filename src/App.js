@@ -15,6 +15,7 @@ import Volunteer from "./Pages/VolunteerDashboard";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Terms from "./Pages/Terms";
+import Donor from './Pages/Donor'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
     <Route path="/Login" element={<Login/>}/>
     <Route path="/Driver" element={<Driver/>}/>
     <Route path="/Member" element={<Member/>}/>
+    <Route path="/Donor" element={<Donor/>}/>
     <Route path="/Volunteer" element={<Volunteer/>}/>
     <Route path="/Admin" element={<Admin/>}/>
     <Route path="/Register" element={<Register/>}/>

@@ -7,6 +7,8 @@ import { Button } from 'react-bootstrap';
 import  { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 function Member(){
     const [isEditMode, setIsEditMode] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -52,6 +54,10 @@ function Member(){
       <div className="userInfoContainer">
         <Container>
           <Row>
+            
+            <PayPalScriptProvider options={{ clientId: "test" }}>
+            <PayPalButtons style={{ layout: "horizontal" }} />
+        </PayPalScriptProvider>
             <Col lg={12} md={12} sm={12} style={{ display:'flex',justifyContent:'flex-end'}} >
               <Button onClick={handleToggleEditMode} style={{ margin: '15px',borderRadius:'20px',padding:'10px 20px' }} variant='dark'>
                 {isEditMode ? 'View Profile' : 'Edit Profile'}
@@ -141,7 +147,7 @@ function Member(){
                 </Container>
                 </div>
                 
-                
+
                 <Container className='contentTitle'>
                 <h2>Your Meal Schedule</h2>
                 </Container>
@@ -224,6 +230,7 @@ function Member(){
                 </div>
                 </div>
                 </div>
+
                 </Col>
                 </Row>
                 </Container>
