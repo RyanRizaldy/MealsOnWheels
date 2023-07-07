@@ -39,7 +39,7 @@ export default function Contact() {
             </Col>
           </Row>
           <Row>
-            <Form.Group className="formInput mb-3">
+            <Form.Group className="formInput mb-3 px-4">
               <Form.Label>Message</Form.Label>
               <Form.Control
                 style={{ outline: "none", boxShadow: "none", border : '1px solid #ccc' }}
