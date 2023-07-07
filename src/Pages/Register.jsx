@@ -28,7 +28,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>User Name</Form.Label>
+      <Form.Label>Username</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -79,7 +79,7 @@ function Register(){
     <>
     <Form className='px-4'>
     <Form.Group className="formInput mb-3">
-      <Form.Label>Name</Form.Label>
+      <Form.Label>Full Name</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -146,7 +146,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>User Name</Form.Label>
+      <Form.Label>Username</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -205,7 +205,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>User Name</Form.Label>
+      <Form.Label>Username</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -264,7 +264,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>User Name</Form.Label>
+      <Form.Label>Username</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
