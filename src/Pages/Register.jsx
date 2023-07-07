@@ -44,7 +44,7 @@ function Register(){
     </Form.Group>
 
     <Form.Group className="formInput mb-3">
-      <Form.Label>Address</Form.Label>
+      <Form.Label>Addresss</Form.Label>
       <Form.Control
         style={{ outline: "none", boxShadow: "none" }}
         type="text"
@@ -67,12 +67,13 @@ function Register(){
       />
     </Form.Group>
    
-  </Form>
+  
   <div className="loginButtonWrapper">
     <Button variant="dark" className="loginButton">
       Register
     </Button>
   </div>
+  </Form>
   </>;
   } else if (selectedOption === 'partner') {
     content =
@@ -126,174 +127,178 @@ function Register(){
       />
     </Form.Group>
    
-  </Form>
+ 
   <div className="loginButtonWrapper">
     <Button variant="dark" className="loginButton">
       Register
     </Button>
   </div>
+   </Form>
   </>;
   } else if (selectedOption === 'driver') {
-    content = 
-    <>
-    <Form className='px-4'>
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Full Name</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+    content = (
+      <>
+        <Form className="px-4">
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Username</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Phone Number</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Address</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="email"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="email"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Password</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="password"
-      />
-    </Form.Group>
-   
-  </Form>
-  <div className="loginButtonWrapper">
-    <Button variant="dark" className="loginButton">
-      Register
-    </Button>
-  </div>
-  </>;
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="password"
+            />
+          </Form.Group>
+
+          <div className="loginButtonWrapper">
+            <Button variant="dark" className="loginButton">
+              Register
+            </Button>
+          </div>
+        </Form>
+      </>
+    );
   }else if (selectedOption === 'volunteer') {
-    content = 
-    <>
-    <Form className='px-4'>
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Full Name</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+    content = (
+      <>
+        <Form className="px-4">
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Username</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Phone Number</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Address</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="email"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="email"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Password</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="password"
-      />
-    </Form.Group>
-   
-  </Form>
-  <div className="loginButtonWrapper">
-    <Button variant="dark" className="loginButton">
-      Register
-    </Button>
-  </div>
-  </>;
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="password"
+            />
+          </Form.Group>
+
+          <div className="loginButtonWrapper">
+            <Button variant="dark" className="loginButton">
+              Register
+            </Button>
+          </div>
+        </Form>
+      </>
+    );
   }else if (selectedOption === 'donor') {
-    content =
-    <>
-    <Form className='px-4'>
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Full Name</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+    content = (
+      <>
+        <Form className="px-4">
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Username</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="email"
-      />
-    </Form.Group>
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="email"
+            />
+          </Form.Group>
 
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Password</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="password"
-      />
-    </Form.Group>
-   
-  </Form>
-  <div className="loginButtonWrapper">
-    <Button variant="dark" className="loginButton">
-      Register
-    </Button>
-  </div>
-  </>;
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="password"
+            />
+          </Form.Group>
+
+          <div className="loginButtonWrapper">
+            <Button variant="dark" className="loginButton">
+              Register
+            </Button>
+          </div>
+        </Form>
+      </>
+    );
   }
 
     return (
