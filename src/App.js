@@ -15,27 +15,50 @@ import Volunteer from "./Pages/VolunteerDashboard";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Terms from "./Pages/Terms";
-import Donor from './Pages/Donor'
+import Donor from './Pages/Donor';
+import { useState, useEffect } from 'react';
 
 function App() {
+
+  const [userLog,setUserLog] = useState(null)
+  useEffect(()=>{
+    setUserLog(JSON.parse(sessionStorage.getItem("user")))
+  },[])
   return (
     <>
 <Header/>
 <Router>
   <Routes>
+    {}
     <Route path="/" element={<Home/>}/>
     <Route path="/Partner" element={<Partner/>}/>
     <Route path="/Menu" element={<Menu/>}/>
     <Route path="/Contact" element={<Contact/>}/>
     <Route path="/About" element={<About/>}/>
     <Route path="/Login" element={<Login/>}/>
-    <Route path="/Driver" element={<Driver/>}/>
-    <Route path="/Member" element={<Member/>}/>
-    <Route path="/Donor" element={<Donor/>}/>
-    <Route path="/Volunteer" element={<Volunteer/>}/>
-    <Route path="/Admin" element={<Admin/>}/>
     <Route path="/Register" element={<Register/>}/>
     <Route path="/Terms" element={<Terms/>}/>
+    {userLog && (
+      <>
+       {userLog.role === "driver" && (
+    <Route path="/Driver" element={<Driver/>}/>
+       )}
+       {userLog.role === "member" && (
+    <Route path="/Member" element={<Member/>}/>
+    )}
+    {userLog.role === "donor" && (
+    <Route path="/Donor" element={<Donor/>}/>
+    )}
+    {userLog.role === "volunteer" && (
+    <Route path="/Volunteer" element={<Volunteer/>}/>
+    )}
+    {userLog.role === "admin" && (
+    <Route path="/Admin" element={<Admin/>}/>
+    )}
+      </>
+    )}
+    
+   
    
 
   </Routes>

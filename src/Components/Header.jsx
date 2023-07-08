@@ -5,9 +5,18 @@ import Logo from '../image/MealsOnWheels1.png'
 import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
+import { useState, useEffect } from 'react';
 
 
 function Header() {
+  const [userLog,setUserLog] = useState(null)
+  useEffect(()=>{
+    setUserLog(JSON.parse(sessionStorage.getItem("user")))
+  },[])
+  const handleLogout = ()=>{
+    sessionStorage.clear()
+    window.location.href="/"
+  }
   return (
     <>
       <Navbar expand="lg" className="navbar">
@@ -21,10 +30,30 @@ function Header() {
               <Nav.Link href="Menu">Menu</Nav.Link>
               <Nav.Link href="About">About</Nav.Link>
               <Nav.Link href="Contact">Contact</Nav.Link>
-            </Nav>
 
+              {userLog && userLog.role === "member" && (
+                 <Nav.Link href="Member">Dashboard</Nav.Link>
+              )}
+               {userLog && userLog.role === "driver" && (
+                 <Nav.Link href="Driver">Dashboard</Nav.Link>
+              )} {userLog && userLog.role === "partner" && (
+                <Nav.Link href="Partner">Dashboard</Nav.Link>
+             )} {userLog && userLog.role === "donor" && (
+              <Nav.Link href="Donor">Dashboard</Nav.Link>
+           )}
+            {userLog && userLog.role === "volunteer" && (
+                 <Nav.Link href="Volunteer">Dashboard</Nav.Link>
+              )}
+               {userLog && userLog.role === "admin" && (
+                 <Nav.Link href="Admin">Dashboard</Nav.Link>
+              )}
+              
+            </Nav>
+                  
             <div className="navLogin">
-              <a
+            {!userLog &&   (
+              <>
+               <a
                 href="Login"
                 className="text-decoration-none text-dark fw-semibold mx-3"
               >
@@ -35,6 +64,18 @@ function Header() {
                   Get Started
                 </Button>
               </a>
+              </>
+              )}
+              {userLog &&   (
+              <>
+               <Button
+                onClick={handleLogout} variant="dark"
+                className="text-decoration-none text-dark fw-semibold mx-3" >
+                Log Out
+              </Button>
+              </>
+              )}
+             
             </div>
           </Navbar.Collapse>
         </Container>

@@ -3,8 +3,72 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
+import axios from "axios";
+import { useState, useEffect } from 'react';
+
+
 
 function Login(){
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const handleLogin = async (e) => {
+    e.preventDefault();
+  
+    const user = {
+      usernameOrEmail: email,
+      password: password
+    };
+  
+    try {
+      const response = await axios.post('http://localhost:8080/api/user/login', user);
+  
+      const isApproved = response.data.approved;
+      if (!isApproved) {
+        alert("User is inactive. Cannot login.");
+        return;
+      }
+  
+      const { role, approved, ...userData } = response.data;
+      const userWithRole = {
+        ...userData,
+        role: role,
+        approved: approved
+      };
+  
+      sessionStorage.setItem("user", JSON.stringify(userWithRole));
+      // Redirect to the dashboard page using React Router
+      // Example: history.push('/dashboard');
+      let redirectUrl;
+      switch (response.data.role) {
+        case "member":
+          redirectUrl = "/Member";
+          break;
+        case "partner":
+          redirectUrl = "/Partner";
+          break;
+        case "driver":
+          redirectUrl = "/Driver";
+          break;
+        case "admin":
+          redirectUrl = "/Admin";
+          break;
+
+        default:
+          window.location.href="/home";
+          break;
+      }
+      window.location.href = redirectUrl;
+
+    } catch (error) {
+      alert("Invalid credentials");
+      console.error(error);
+    }
+  
+    setEmail('');
+    setPassword('');
+  };
+
     return (
       <>
         <Container className="loginContainer">
@@ -12,12 +76,16 @@ function Login(){
             <Col lg={6} md={6} sm={12}>
               <div className="loginForm">
                 <h2>Login</h2>
-                <Form>
+                
+                <Form onSubmit={handleLogin}>
                   <Form.Group className="formInput mb-3">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                       style={{ outline: "none", boxShadow: "none" }}
                       type="email"
+                      value={email}  
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </Form.Group>
                   <Form.Group className="formInput mb-3">
@@ -25,15 +93,21 @@ function Login(){
                     <Form.Control
                       style={{ outline: "none", boxShadow: "none" }}
                       type="password"
+                      value={password} 
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
                     />
                   </Form.Group>
-                </Form>
 
-                <div className="loginButtonWrapper">
-                  <Button variant="dark" className="loginButton">
+                  <div className="loginButtonWrapper">
+                  <Button variant="dark" className="loginButton" type="submit">
                     Login
                   </Button>
                 </div>
+
+                </Form>
+
+               
               </div>
             </Col>
             <Col lg={6} md={6} sm={12}>
