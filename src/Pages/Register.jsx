@@ -15,6 +15,7 @@ function Register(){
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [brand,setBrand] = useState("");
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -30,16 +31,16 @@ function Register(){
          endpoint = "http://localhost:8080/api/user/new_member";
          break;
        case "partner":
-         endpoint = "https://api.example.com/register/partner";
+         endpoint = "http://localhost:8080/api/user/new_partner";
          break;
        case "driver":
-         endpoint = "https://api.example.com/register/driver";
+         endpoint = "http://localhost:8080/api/user/new_driver";
          break;
        case "volunteer":
          endpoint = "http://localhost:8080/api/user/new_volunteer";
          break;
        case "donor":
-         endpoint = "https://api.example.com/register/donor";
+         endpoint = "http://localhost:8080/api/user/new_donatur";
          break;
        default:
          console.log("Invalid option");
@@ -55,6 +56,8 @@ function Register(){
          phone,
          email,
          password,
+         brand
+
        });
 
        console.log("Registration successful:", response.data);
@@ -141,82 +144,26 @@ function Register(){
       </>
     );
   } else if (selectedOption === 'partner') {
-    content =
-    <>
-    <Form className='px-4'>
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Full Name</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
-
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Company Name</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
-
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Phone Number</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
-
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Address</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="text"
-      />
-    </Form.Group>
-
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="email"
-      />
-    </Form.Group>
-
-    <Form.Group className="formInput mb-3">
-      <Form.Label>Password</Form.Label>
-      <Form.Control
-        style={{ outline: "none", boxShadow: "none" }}
-        type="password"
-      />
-    </Form.Group>
-   
- 
-  <div className="loginButtonWrapper">
-    <Button variant="dark" className="loginButton">
-      Register
-    </Button>
-  </div>
-   </Form>
-  </>;
-  } else if (selectedOption === 'driver') {
     content = (
       <>
-        <Form className="px-4">
+        <Form onSubmit={handleSubmit} className="px-4">
           <Form.Group className="formInput mb-3">
             <Form.Label>Full Name</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
 
           <Form.Group className="formInput mb-3">
-            <Form.Label>Username</Form.Label>
+            <Form.Label>Company Name</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
             />
           </Form.Group>
 
@@ -225,6 +172,8 @@ function Register(){
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </Form.Group>
 
@@ -233,6 +182,8 @@ function Register(){
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </Form.Group>
 
@@ -241,6 +192,8 @@ function Register(){
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
 
@@ -249,11 +202,85 @@ function Register(){
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 
           <div className="loginButtonWrapper">
-            <Button variant="dark" className="loginButton">
+            <Button variant="dark" className="loginButton" type='submit'>
+              Register
+            </Button>
+          </div>
+        </Form>
+      </>
+    );
+  } else if (selectedOption === 'driver') {
+    content = (
+      <>
+        <Form onSubmit={handleSubmit} className="px-4">
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <div className="loginButtonWrapper">
+            <Button variant="dark" className="loginButton" type="submit">
               Register
             </Button>
           </div>
@@ -335,12 +362,14 @@ function Register(){
   }else if (selectedOption === 'donor') {
     content = (
       <>
-        <Form className="px-4">
+        <Form onSubmit={handleSubmit} className="px-4">
           <Form.Group className="formInput mb-3">
             <Form.Label>Full Name</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
 
@@ -349,14 +378,19 @@ function Register(){
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
+
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Email address</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
 
@@ -365,11 +399,13 @@ function Register(){
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
 
           <div className="loginButtonWrapper">
-            <Button variant="dark" className="loginButton">
+            <Button variant="dark" className="loginButton" type="submit">
               Register
             </Button>
           </div>
