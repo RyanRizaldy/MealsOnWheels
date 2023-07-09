@@ -43,10 +43,10 @@ function Register(){
     didOpen: (toast) => {
       toast.addEventListener("mouseenter", Swal.stopTimer);
       toast.addEventListener("mouseleave", Swal.resumeTimer);
+       
     },
-   
-    
   });
+
 
    const handleSubmit = async (event) => {
      event.preventDefault();
@@ -96,9 +96,9 @@ function Register(){
        Toast.fire({
          icon: "success",
          title: "Signed in successfully",
-
-          
-       });
+       }).then(() => {
+         window.location.href = "Login";
+       });;
 
        
        // Optionally, perform any additional actions after successful registration
