@@ -10,12 +10,18 @@ import axios from 'axios';
 function Register(){
   const [selectedOption, setSelectedOption] = useState('member');
   const [name, setName] = useState("");
+  const [nameError,setNameError] = useState("");
   const [username, setUsername] = useState("");
+  const [usernameError,setUsernameError] = useState("");
   const [address, setAddress] = useState("");
+  const [addressError,setAddressError] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [emailError,setEmailError] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError,setPasswordError] = useState("");
   const [brand,setBrand] = useState("");
+  const [brandError,setBrandError] = useState("");
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -23,6 +29,8 @@ function Register(){
 
    const handleSubmit = async (event) => {
      event.preventDefault();
+
+     if (validateForm()){
 
      let endpoint;
 
@@ -58,15 +66,59 @@ function Register(){
          password,
          brand
 
+         
+
        });
 
        console.log("Registration successful:", response.data);
+       window.location.href="Login";
        // Optionally, perform any additional actions after successful registration
      } catch (error) {
        console.log("Error during registration:", error);
        // Optionally, handle any error conditions or display error messages
      }
+    }
    };
+
+   const validateForm = () => {
+     let valid = true;
+
+     // Validate name
+     if (!name) {
+       setNameError("Name is required");
+       valid = false;
+     }
+
+     // Validate username
+     if (selectedOption !== 'partner' && !username) {
+       setUsernameError("Username is required");
+       valid = false;
+     }
+
+     // Validate address
+     if (selectedOption !== 'donor' && !address) {
+       setAddressError("Address is required");
+       valid = false;
+     }
+
+     if (!email) {
+      setEmailError("Email is required");
+      valid = false;
+     }
+
+     if (!password){
+      setPasswordError("Password is required");
+      valid = false;
+     }
+
+     if (selectedOption === "partner" && !brand){
+      setBrandError("Brand is required");
+      valid = false;
+     } 
+
+     return valid;
+   };
+
  
 
   let content;
@@ -84,6 +136,7 @@ function Register(){
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
+          {Boolean(nameError) && <div className="text-danger">{nameError}</div>}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Username</Form.Label>
@@ -94,6 +147,9 @@ function Register(){
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
+          {Boolean(usernameError) && (
+            <div className="text-danger">{usernameError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Phone Number</Form.Label>
@@ -114,6 +170,7 @@ function Register(){
               onChange={(e) => setAddress(e.target.value)}
             />
           </Form.Group>
+          {Boolean(addressError) && <div className="text-danger">{addressError}</div>}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Email address</Form.Label>
@@ -124,6 +181,7 @@ function Register(){
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
+          {Boolean(emailError) && <div className="text-danger">{emailError}</div>}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Password</Form.Label>
@@ -134,6 +192,7 @@ function Register(){
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
+          {Boolean(passwordError) && <div className="text-danger">{passwordError}</div>}
 
           <div className="loginButtonWrapper">
             <Button variant="dark" className="loginButton" type="submit">
@@ -156,6 +215,7 @@ function Register(){
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
+          {Boolean(nameError) && <div className="text-danger">{nameError}</div>}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Company Name</Form.Label>
@@ -166,6 +226,7 @@ function Register(){
               onChange={(e) => setBrand(e.target.value)}
             />
           </Form.Group>
+          {Boolean(brandError) && <div className="text-danger">{brandError}</div>}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Phone Number</Form.Label>
@@ -186,6 +247,9 @@ function Register(){
               onChange={(e) => setAddress(e.target.value)}
             />
           </Form.Group>
+          {Boolean(addressError) && (
+            <div className="text-danger">{addressError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Email address</Form.Label>
@@ -196,6 +260,9 @@ function Register(){
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
+          {Boolean(emailError) && (
+            <div className="text-danger">{emailError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Password</Form.Label>
@@ -206,9 +273,12 @@ function Register(){
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
+          {Boolean(passwordError) && (
+            <div className="text-danger">{passwordError}</div>
+          )}
 
           <div className="loginButtonWrapper">
-            <Button variant="dark" className="loginButton" type='submit'>
+            <Button variant="dark" className="loginButton" type="submit">
               Register
             </Button>
           </div>
@@ -228,6 +298,7 @@ function Register(){
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
+          {Boolean(nameError) && <div className="text-danger">{nameError}</div>}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Username</Form.Label>
@@ -238,6 +309,9 @@ function Register(){
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
+          {Boolean(usernameError) && (
+            <div className="text-danger">{usernameError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Phone Number</Form.Label>
@@ -258,6 +332,9 @@ function Register(){
               onChange={(e) => setAddress(e.target.value)}
             />
           </Form.Group>
+          {Boolean(addressError) && (
+            <div className="text-danger">{addressError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Email address</Form.Label>
@@ -268,6 +345,9 @@ function Register(){
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
+          {Boolean(emailError) && (
+            <div className="text-danger">{emailError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Password</Form.Label>
@@ -278,6 +358,9 @@ function Register(){
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
+          {Boolean(passwordError) && (
+            <div className="text-danger">{passwordError}</div>
+          )}
 
           <div className="loginButtonWrapper">
             <Button variant="dark" className="loginButton" type="submit">
@@ -300,6 +383,7 @@ function Register(){
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
+          {Boolean(nameError) && <div className="text-danger">{nameError}</div>}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Username</Form.Label>
@@ -310,6 +394,9 @@ function Register(){
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
+          {Boolean(usernameError) && (
+            <div className="text-danger">{usernameError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Phone Number</Form.Label>
@@ -330,6 +417,9 @@ function Register(){
               onChange={(e) => setAddress(e.target.value)}
             />
           </Form.Group>
+          {Boolean(addressError) && (
+            <div className="text-danger">{addressError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Email address</Form.Label>
@@ -340,6 +430,9 @@ function Register(){
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
+          {Boolean(emailError) && (
+            <div className="text-danger">{emailError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Password</Form.Label>
@@ -350,6 +443,9 @@ function Register(){
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
+          {Boolean(passwordError) && (
+            <div className="text-danger">{passwordError}</div>
+          )}
 
           <div className="loginButtonWrapper">
             <Button variant="dark" className="loginButton" type="submit">
@@ -372,6 +468,7 @@ function Register(){
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
+          {Boolean(nameError) && <div className="text-danger">{nameError}</div>}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Username</Form.Label>
@@ -382,7 +479,9 @@ function Register(){
               onChange={(e) => setUsername(e.target.value)}
             />
           </Form.Group>
-
+          {Boolean(usernameError) && (
+            <div className="text-danger">{usernameError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Email address</Form.Label>
@@ -393,7 +492,9 @@ function Register(){
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-
+          {Boolean(emailError) && (
+            <div className="text-danger">{emailError}</div>
+          )}
           <Form.Group className="formInput mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
@@ -403,6 +504,7 @@ function Register(){
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
+          {Boolean(passwordError) && <div className="text-danger">{passwordError}</div>}
 
           <div className="loginButtonWrapper">
             <Button variant="dark" className="loginButton" type="submit">
