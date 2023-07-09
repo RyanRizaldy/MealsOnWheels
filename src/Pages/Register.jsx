@@ -6,6 +6,10 @@ import { Button } from 'react-bootstrap';
 import Img from '../image/registerImg.jpg'
 import React, { useState } from 'react';
 import axios from 'axios';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+
 
 function Register(){
   const [selectedOption, setSelectedOption] = useState('member');
@@ -23,9 +27,26 @@ function Register(){
   const [brand,setBrand] = useState("");
   const [brandError,setBrandError] = useState("");
 
+  
+
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
+
+  const MySwal = withReactContent(Swal);
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+   
+    
+  });
 
    const handleSubmit = async (event) => {
      event.preventDefault();
@@ -71,7 +92,15 @@ function Register(){
        });
 
        console.log("Registration successful:", response.data);
-       window.location.href="Login";
+
+       Toast.fire({
+         icon: "success",
+         title: "Signed in successfully",
+
+          
+       });
+
+       
        // Optionally, perform any additional actions after successful registration
      } catch (error) {
        console.log("Error during registration:", error);
