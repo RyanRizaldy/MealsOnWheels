@@ -92,6 +92,7 @@ function Register(){
        // Optionally, perform any additional actions after successful registration
      } catch (error) {
        console.log("Error during registration:", error);
+        Swal.fire("Error!", "Error during registration!", "error");
        // Optionally, handle any error conditions or display error messages
      }
     }
