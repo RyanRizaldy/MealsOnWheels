@@ -34,18 +34,7 @@ function Register(){
   };
 
   const MySwal = withReactContent(Swal);
-  const Toast = Swal.mixin({
-    toast: true,
-    position: "top-end",
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener("mouseenter", Swal.stopTimer);
-      toast.addEventListener("mouseleave", Swal.resumeTimer);
-       
-    },
-  });
+  
 
 
    const handleSubmit = async (event) => {
@@ -93,12 +82,11 @@ function Register(){
 
        console.log("Registration successful:", response.data);
 
-       Toast.fire({
-         icon: "success",
-         title: "Signed in successfully",
-       }).then(() => {
-         window.location.href = "Login";
-       });;
+       Swal.fire("Good job!", "Registration successfully!", "success").then(
+         () => {
+           window.location.href = "Login";
+         }
+       );;
 
        
        // Optionally, perform any additional actions after successful registration
