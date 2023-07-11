@@ -5,12 +5,16 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import Swal from "sweetalert2";
+
+import withReactContent from "sweetalert2-react-content";
 
 
 
 function Login(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const MySwal = withReactContent(Swal);
   
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -61,14 +65,17 @@ function Login(){
           break;
 
         default:
-          window.location.href="/home";
+          window.location.href="/";
           break;
       }
       window.location.href = redirectUrl;
 
     } catch (error) {
-      alert("Invalid credentials");
-      console.error(error);
+  Swal.fire(
+  'Error!',
+  'Username or Password Wrong!',
+  'error'
+)
     }
   
     setEmail('');
