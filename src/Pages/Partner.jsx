@@ -266,7 +266,7 @@ const handleUpload = (event) => {
 
           <div className="loginButtonWrapper">
             <Button variant="dark" className="loginButton" type="submit">
-              Register
+              Add
             </Button>
           </div>
         </Form>

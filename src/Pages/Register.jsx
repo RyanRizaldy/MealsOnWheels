@@ -108,7 +108,7 @@ function Register(){
      }
 
      // Validate username
-     if (selectedOption !== 'partner' && !username) {
+     if (!username) {
        setUsernameError("Username is required");
        valid = false;
      }
@@ -244,7 +244,22 @@ function Register(){
               onChange={(e) => setBrand(e.target.value)}
             />
           </Form.Group>
-          {Boolean(brandError) && <div className="text-danger">{brandError}</div>}
+          {Boolean(brandError) && (
+            <div className="text-danger">{brandError}</div>
+          )}
+
+          <Form.Group className="formInput mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              style={{ outline: "none", boxShadow: "none" }}
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
+          {Boolean(usernameError) && (
+            <div className="text-danger">{usernameError}</div>
+          )}
 
           <Form.Group className="formInput mb-3">
             <Form.Label>Phone Number</Form.Label>

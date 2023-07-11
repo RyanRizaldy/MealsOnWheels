@@ -57,6 +57,9 @@ function App() {
     {userLog.role === "admin" && (
     <Route path="/Admin" element={<Admin/>}/>
     )}
+    {userLog.role === "partner" && (
+    <Route path="/Partner" element={<Admin/>}/>
+    )}
       </>
     )}
     
