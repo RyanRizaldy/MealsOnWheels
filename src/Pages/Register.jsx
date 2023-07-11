@@ -146,7 +146,7 @@ function Register(){
       <>
         <Form onSubmit={handleSubmit} className="px-4">
           <Form.Group className="formInput mb-3">
-            <Form.Label>Full Name</Form.Label>
+            <Form.Label>Full name</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
