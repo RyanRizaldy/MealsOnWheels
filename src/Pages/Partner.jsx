@@ -44,6 +44,46 @@ function Partner() {
       });
   };
 
+//UPLOAD MEALS
+
+const [userLog,setUserLog] = useState(null)
+  useEffect(()=>{
+    setUserLog(JSON.parse(sessionStorage.getItem("user")))
+  },[])
+
+const [mealsName, setMealsName] = useState('');
+const [carbs, setCarbs] = useState('');
+const [fat, setFat] = useState('');
+const [protein, setProtein] = useState('');
+const [file, setFile] = useState(null);
+
+
+const handleUpload = (event) => {
+  event.preventDefault();
+
+  // Create form data object
+  const formData = new FormData();
+  formData.append('name', mealsName);
+  formData.append('carbs', carbs);
+  formData.append('fat', fat);
+  formData.append('protein', protein);
+  formData.append('fileImage', file);
+  formData.append('partnerId',userLog.roleData.partnerId);
+
+  // Send the form data to the server
+  fetch('http://localhost:8080/api/partner/post_menu', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((data) => {
+      console.log(data); // Handle the response from the server
+      alert("Successfully uploaded!");
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+};
+//END UPLOAD MEALS
 
   const [selectedOption, setSelectedOption] = useState('task');
 
@@ -162,13 +202,15 @@ function Partner() {
     content = 
     <>
       <Container>
-      <Form  className="px-4">
+      <Form  onSubmit={handleUpload} encType="multipart/form-data" className="px-4">
           <Form.Group className="formInput mb-3">
             <Form.Label>Meals Name</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
-              
+              value={mealsName}
+          onChange={(e) => setMealsName(e.target.value)}
+          required
             />
           </Form.Group>
           
@@ -178,7 +220,9 @@ function Partner() {
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
-              
+              value={carbs}
+              onChange={(e) => setCarbs(e.target.value)}
+              required
             />
           </Form.Group>
           
@@ -187,8 +231,10 @@ function Partner() {
             <Form.Label>Fat</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
-              type="email"
-              
+              type="text"
+              value={fat}
+              onChange={(e) => setFat(e.target.value)}
+              required
             />
           </Form.Group>
           
@@ -196,8 +242,10 @@ function Partner() {
             <Form.Label>Protein</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
-              type="password"
-              
+              type="text"
+              value={protein}
+              onChange={(e) => setProtein(e.target.value)}
+              required
             />
           </Form.Group>
 
@@ -207,6 +255,8 @@ function Partner() {
               type="file"
               required
               name="file"
+    accept="image/*"
+    onChange={(e) => setFile(e.target.files[0])}
               
             />
             <Form.Control.Feedback type="invalid" tooltip>
