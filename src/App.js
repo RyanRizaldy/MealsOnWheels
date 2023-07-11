@@ -17,6 +17,7 @@ import About from "./Pages/About";
 import Terms from "./Pages/Terms";
 import Donor from './Pages/Donor';
 import { useState, useEffect } from 'react';
+import MenuList from "./Pages/MenuList";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
     <Route path="/Login" element={<Login/>}/>
     <Route path="/Register" element={<Register/>}/>
     <Route path="/Terms" element={<Terms/>}/>
+    <Route path="/MenuList" element={<MenuList/>}/>
     {userLog && (
       <>
        {userLog.role === "driver" && (

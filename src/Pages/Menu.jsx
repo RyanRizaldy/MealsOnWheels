@@ -6,7 +6,8 @@ import { Button } from "react-bootstrap";
 import food from "../image/pancake.jpg";
 import food1 from "../image/Food1.png";
 import food2 from "../image/Food2.png";
-import  { useState } from 'react';
+import  { useState, useEffect } from 'react';
+import axios from "axios";
 
 export default function Menu() {
   const [selectedOption, setSelectedOption] = useState('all');
@@ -15,127 +16,72 @@ export default function Menu() {
     setSelectedOption(option);
   };
 
+   const [menus, setMenus] = useState([]);
+
+   useEffect(() => {
+     const fetchMenus = async () => {
+       try {
+         const response = await axios.get(
+           "http://localhost:8080/api/partner/list_menu"
+         );
+         setMenus(response.data);
+       } catch (error) {
+         console.error("Error fetching menus:", error);
+       }
+     };
+
+     fetchMenus();
+   }, []);
+
   let content;
 
   if (selectedOption === 'all') {
-    content = 
-    <>
-    <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <img src={food} alt="Logo" />
-                <h6>
-                  Lemon Poppy Seed Pancakes with Sausage and Berry 
-                </h6>
-                <div className=" mt-4 text-center">
-                  <div>
-                    <p className="my-2">580 Cal</p>
-                    <Row>
-                      <Col>49<br/>Carbs</Col>
-                      <Col>
-                        30g <br /> Fat
-                      </Col>
-                      <Col>30g <br/>Protein</Col>
-                    </Row>
-                    <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
-                      + Add
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Col>
 
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <img src={food1} alt="Logo" />
-                <h6>Salmon Burger with Harissa Carrots and mayo souce</h6>
-                <div className=" mt-4 text-center">
-                  <div>
-                    <p className="my-2">580 Cal</p>
-                    <Row>
-                      <Col>49<br/>Carbs</Col>
-                      <Col>
-                        30g <br /> Fat
-                      </Col>
-                      <Col>30g <br/>Protein</Col>
-                    </Row>
-                    <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
-                      + Add
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Col>
-
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <img src={food2} alt="Logo" />
-                <h6>Dill-Chimichurri Shrimp with Roasted Summer Vegetables</h6>
-                <div className=" mt-4 text-center">
-                  <div>
-                    <p className="my-2">580 Cal</p>
-                    <Row>
-                      <Col>49<br/> Carbs</Col>
-                      <Col>
-                        30g <br /> Fat
-                      </Col>
-                      <Col>30g <br/>Protein</Col>
-                    </Row>
-                    <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
-                      + Add
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Col>
-
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <img src={food} alt="Logo" />
-                <h6>
-                  Lemon Poppy Seed Pancakes with Sausage and Berry 
-                </h6>
-                <div className=" mt-4 text-center">
-                  <div>
-                    <p className="my-2">580 Cal</p>
-                    <Row>
-                      <Col>49<br/> Carbs</Col>
-                      <Col>
-                        30g <br /> Fat
-                      </Col>
-                      <Col>30g <br/>Protein</Col>
-                    </Row>
-                    <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
-                      + Add
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Col>
+    content = (
+      <>
+      
+          {menus.map((menu) => (
             
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <img src={food} alt="Logo" />
-                <h6>
-                  Lemon Poppy Seed Pancakes with Sausage and Berry 
-                </h6>
-                <div className=" mt-4 text-center">
-                  <div>
-                    <p className="my-2">580 Cal</p>
-                    <Row>
-                      <Col>49<br/> Carbs</Col>
-                      <Col>
-                        30g <br /> Fat
-                      </Col>
-                      <Col>30g <br/>Protein</Col>
-                    </Row>
-                    <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
-                      + Add
-                    </Button>
-                  </div>
+               <Col lg={3} md={6} sm={12} className="cardWrapper">
+                <div key={menu.menuId}>
+            
+                <div className="card">
+                  <img
+                    src={`data:${menu.picture.fileType};base64,${menu.picture.image}`}
+                    alt="Menu"
+                  />
+                  <h6>{menu.name}</h6>
+
+                  <div className=" mt-4 text-center">
+                    <div>
+                      <Row>
+                        <Col>
+                          {menu.carb}
+                          <br />
+                          Carbs
+                        </Col>
+                        <Col>
+                          {menu.fat}
+                          <br /> Fat
+                        </Col>
+                        <Col>
+                          {menu.protein} <br />
+                          Protein
+                        </Col>
+                      </Row>
+                      <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
+                        + Add
+                      </Button>
+                    </div>
+                  </div>                 
                 </div>
-              </div>
-            </Col>
-    </>;
+                </div>
+                 </Col>
+          
+          ))}
+       
+      </>
+    );
   } else if (selectedOption === 'plan1') {
     content = 
     <>
@@ -269,33 +215,45 @@ export default function Menu() {
         <h3 className="fw-normal">
           No Prep, No Cooking.<span className="fw-bolder">Just Enjoy.</span>{" "}
         </h3>
-        <p className="fw-bolder mt-3 ourMenu">
-          {" "}
-          Our menu
-        </p>
+        <p className="fw-bolder ourMenu mt-3"> Our menu</p>
       </div>
       <div className="bg-body-tertiary container-fluid">
         <Container>
           <div class="d-flex justify-content-start text-decoration-none py-4 text-black">
-            
-                <Button className={selectedOption === 'all' ? 'active' : ''} onClick={() => handleOptionChange('all')} variant="outline">
-                  all Meal
-                </Button>
-                <Button className={selectedOption === 'plan1' ? 'active' : ''}onClick={() => handleOptionChange('plan1')} variant="outline">
-                 Meal Plan1
-                </Button>
-                <Button className={selectedOption === 'plan2' ? 'active' : ''}onClick={() => handleOptionChange('plan2')} variant="outline">
-                 Meal Plan2
-                </Button>
-                <Button className={selectedOption === 'plan3' ? 'active' : ''}onClick={() => handleOptionChange('plan3')} variant="outline">
-                 Meal Plan3
-                </Button>
-            
+            <Button
+              className={selectedOption === "all" ? "active" : ""}
+              onClick={() => handleOptionChange("all")}
+              variant="outline"
+            >
+              all Meal
+            </Button>
+            {/* <Button
+              className={selectedOption === "plan1" ? "active" : ""}
+              onClick={() => handleOptionChange("plan1")}
+              variant="outline"
+            >
+              Meal Plan1
+            </Button>
+            <Button
+              className={selectedOption === "plan2" ? "active" : ""}
+              onClick={() => handleOptionChange("plan2")}
+              variant="outline"
+            >
+              Meal Plan2
+            </Button>
+            <Button
+              className={selectedOption === "plan3" ? "active" : ""}
+              onClick={() => handleOptionChange("plan3")}
+              variant="outline"
+            >
+              Meal Plan3
+            </Button> */}
           </div>
         </Container>
         <Container>
           <Row>
-          {content}
+           
+            {content}
           </Row>
         </Container>
       </div>
