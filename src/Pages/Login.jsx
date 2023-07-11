@@ -53,6 +53,9 @@ function Login(){
         case "admin":
           redirectUrl = "/Admin";
           break;
+          case "donatur":
+          redirectUrl = "/Donor";
+          break;
 
         default:
           window.location.href="/home";

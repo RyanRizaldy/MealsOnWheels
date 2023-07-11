@@ -25,8 +25,6 @@ function Donor(){
         ...prevUserInfo,
         name: document.getElementById('name').textContent,
         email: document.getElementById('email').textContent,
-        address: document.getElementById('address').textContent,
-        phone: document.getElementById('phone').textContent,
       }));
       setIsEditMode(true);
     }

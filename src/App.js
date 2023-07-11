@@ -48,7 +48,7 @@ function App() {
        {userLog.role === "member" && (
     <Route path="/Member" element={<Member/>}/>
     )}
-    {userLog.role === "donor" && (
+    {userLog.role === "donatur" && (
     <Route path="/Donor" element={<Donor/>}/>
     )}
     {userLog.role === "volunteer" && (

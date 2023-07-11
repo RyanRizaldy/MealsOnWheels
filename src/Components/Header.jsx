@@ -69,8 +69,8 @@ function Header() {
               {userLog &&   (
               <>
                <Button
-                onClick={handleLogout} variant="dark"
-                className="text-decoration-none text-dark fw-semibold mx-3" >
+                onClick={handleLogout} variant="dark" 
+                className="text-decoration-none  fw-semibold mx-3" >
                 Log Out
               </Button>
               </>

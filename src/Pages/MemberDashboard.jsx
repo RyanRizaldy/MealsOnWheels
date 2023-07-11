@@ -54,10 +54,6 @@ function Member(){
       <div className="userInfoContainer">
         <Container>
           <Row>
-            
-            <PayPalScriptProvider options={{ clientId: "test" }}>
-            <PayPalButtons style={{ layout: "horizontal" }} />
-        </PayPalScriptProvider>
             <Col lg={12} md={12} sm={12} style={{ display:'flex',justifyContent:'flex-end'}} >
               <Button onClick={handleToggleEditMode} style={{ margin: '15px',borderRadius:'20px',padding:'10px 20px' }} variant='dark'>
                 {isEditMode ? 'View Profile' : 'Edit Profile'}
