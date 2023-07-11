@@ -1,4 +1,4 @@
-
+import { Form } from 'react-bootstrap';
 import React, { useState } from 'react'
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -18,52 +18,186 @@ import axios from 'axios';
 function Admin() {
 
 
-  const [users, setUsers] = useState([]);
+ const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/api/admin/all_user");
-        setUsers(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
+   const [isEditMode, setIsEditMode] = useState(false);
+   const [userInfo, setUserInfo] = useState({
+     name: "",
+     email: "",
+     username: "",
 
-    fetchUsers();
-  }, []);
+   });
+
+   const handleToggleEditMode = () => {
+     if (isEditMode) {
+       setIsEditMode(false);
+     } else {
+       setUserInfo((prevUserInfo) => ({
+         ...prevUserInfo,
+         name: document.getElementById("name").textContent,
+         email: document.getElementById("email").textContent,
+         username: document.getElementById("username").textContent,
+       
+       }));
+       setIsEditMode(true);
+     }
+   };
+
+   const handleInputChange = (event) => {
+     const { name, value } = event.target;
+     setUserInfo((prevUserInfo) => ({
+       ...prevUserInfo,
+       [name]: value,
+     }));
+   };
+
+   const handleSubmit = (event) => {
+     event.preventDefault();
+     // Perform update logic with userInfo
+     // e.g., send data to server, update database, etc.
+     console.log("Updating user information:", userInfo);
+     setIsEditMode(false); // Exit edit mode after submitting
+   };
+  
+
+
+ useEffect(() => {
+   const fetchMenus = async () => {
+     try {
+       const response = await axios.get(
+         "http://localhost:8080/api/admin/all_user"
+       );
+       setUsers(response.data);
+       console.log(response.data);
+     } catch (error) {
+       console.error("Error fetching menus:", error);
+     }
+   };
+
+   fetchMenus();
+ }, []);
+
+ const handleApprove = async (id) => {
+   try {
+     await axios.post(`http://localhost:8080/api/admin/approve/${id}`);
+     // Update the state or fetch the users again if needed
+     // ...
+   } catch (error) {
+     console.error("Error approving user:", error);
+   }
+ };
+
+ const memberUsers = users.filter((user) => user.role === "member");
+ const partnerUsers = users.filter((user) => user.role === "partner");
+ const driverUsers = users.filter((user) => user.role === "driver");
+ const volunteerUsers = users.filter((user) => user.role === "volunteer");
+ const donaturUsers = users.filter((user) => user.role === "donatur");
+
+
+
+ useEffect(() => {
+   const userData = JSON.parse(sessionStorage.getItem("user"));
+   if (userData) {
+     setUserInfo({
+       name: userData.roleData.name,
+       email: userData.email,
+       username: userData.username || "",
+       
+     });
+   }
+ }, []);
 
 
   return (
     <>
-      <div style={{ backgroundColor: "rgb(255, 235, 214)" }}>
-        <Container className="userInfoContainer align-items-center">
+      <div className="userInfoContainer">
+        <Container>
           <Row>
-            <Col lg={12} md={12} sm={12}>
-              <p style={{ textAlign: "right", margin: "15px" }}>Edit</p>
+            <Col
+              lg={12}
+              md={12}
+              sm={12}
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
+              <Button
+                onClick={handleToggleEditMode}
+                style={{
+                  margin: "15px",
+                  borderRadius: "20px",
+                  padding: "10px 20px",
+                }}
+                variant="dark"
+              >
+                {isEditMode ? "View Profile" : "Edit Profile"}
+              </Button>
             </Col>
             <Col lg={4} md={12} sm={12} className="userPic">
               <img
                 src={pic}
                 alt="Logo"
-                className="rounded-circle"
                 height={"150px"}
+                className="rounded-circle"
               />
-              <div>
-                <h5>Chlarisa</h5>
-              </div>
             </Col>
             <Col lg={4} md={6} sm={12}>
+              {isEditMode ? (
+                <Form onSubmit={handleSubmit}>
+                  <div className="userInfo">
+                    <h5>Name</h5>
+                    <Form.Control
+                      type="text"
+                      name="name"
+                      value={userInfo.name}
+                      onChange={handleInputChange}
+                      style={{ outline: "none", background: "rgba(0,0,0,0.0)" }}
+                    />
+                  </div>
+                  <div className="userInfo">
+                    <h5>Email</h5>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      value={userInfo.email}
+                      onChange={handleInputChange}
+                      style={{ outline: "none", background: "rgba(0,0,0,0.0)" }}
+                    />
+                  </div>
+                  <div className="userInfo">
+                    <h5>Address</h5>
+                    <Form.Control
+                      type="text"
+                      name="address"
+                      value={userInfo.username}
+                      onChange={handleInputChange}
+                      style={{ outline: "none", background: "rgba(0,0,0,0.0)" }}
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    variant="dark"
+                    style={{ marginTop: "20px" }}
+                  >
+                    Update
+                  </Button>
+                </Form>
+              ) : (
+                <>
+                  <div className="userInfo">
+                    <h5>Name</h5>
+                    <p id="name">{userInfo.name}</p>
+                  </div>
+
+                  <div className="userInfo">
+                    <h5>Username</h5>
+                    <p id="address">{userInfo.username}</p>
+                  </div>
+                </>
+              )}
+            </Col>
+            <Col>
               <div className="userInfo">
                 <h5>Email</h5>
-                <p>admin@gmail.com</p>
-              </div>
-            </Col>
-            <Col lg={4} md={6} sm={12}>
-              <div className="userInfo">
-                <h5>Status</h5>
-                <p>Admin</p>
+                <p id="email">{userInfo.email}</p>
               </div>
             </Col>
           </Row>
@@ -71,11 +205,7 @@ function Admin() {
       </div>
 
       <Container>
-        <Tabs
-          defaultActiveKey="Member"
-          id="uncontrolled-tab-example"
-          className="mb-3 "
-        >
+        <Tabs className="mb-3 ">
           {/* Member tabs */}
           <Tab eventKey="Member" title="Member" className="">
             <Container>
@@ -88,179 +218,222 @@ function Admin() {
                     <tr>
                       <th>No</th>
                       <th>Name</th>
-                      <th>Username</th>
                       <th>Email</th>
                       <th>Address</th>
+                      <th>Role</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mark</td>
-                      <td>mark23</td>
-                      <td>mark@gmail.com</td>
-                      <td>Sukabumi, Jabar</td>
-                      <td>
-                        <Row>
-                          <Col lg={2} md={6} sm={12} >
-                            <Button className="btn btn-primary">
-                              Edit
-                            </Button>
-                          </Col>
-                          <Col lg={2} md={6} sm={12}>
-                            <Button className="btn btn-danger ms-3">Delete</Button>
-                          </Col>
-                        </Row>
-                      </td>
-                    </tr>
+                    {memberUsers.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.roleData.memberId}</td>
+                        <td>{user.roleData.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.roleData.address}</td>
+                        <td>{user.role}</td>
+                        <td>
+                          {user.approved === false ? (
+                            <button
+                              className="bg-danger rounded-3"
+                              onClick={() => handleApprove(user.userId)}
+                            >
+                              Approve
+                            </button>
+                          ) : (
+                            <button className="bg-success rounded-3">
+                              Approved
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </Row>
             </Container>
           </Tab>
-
-          {/* partner Tabs  */}
-
-          <Tab eventKey="partner" title="Partner">
+          <Tab eventKey="Partner" title="Partner" className="">
             <Container>
               <h4 className="my-3 text-start">Partner</h4>
             </Container>
             <Container>
-              <Table striped responsive className="border">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Partner Name</th>
-                    <th>Address</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Amily</td>
-                    <td>Kuala Lumpur, Malaysia</td>
-                    <td>amyfood@gmail.com</td>
-                    <td>0857261236718</td>
-                  </tr>
-                </tbody>
-              </Table>
+              <Row>
+                <Table striped responsive className="border">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {partnerUsers.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.roleData.partnerId}</td>
+                        <td>{user.roleData.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.roleData.address}</td>
+                        <td>{user.role}</td>
+                        <td>
+                          {user.approved === false ? (
+                            <button
+                              className="bg-danger rounded-3"
+                              onClick={() => handleApprove(user.userId)}
+                            >
+                              Approve
+                            </button>
+                          ) : (
+                            <button className="bg-success rounded-3">
+                              Approved
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Row>
             </Container>
           </Tab>
-
-          {/* Driver */}
-          <Tab eventKey="Driver" title="Driver">
+          <Tab eventKey="Driver" title="Driver" className="">
             <Container>
               <h4 className="my-3 text-start">Driver</h4>
             </Container>
             <Container>
-              <Table striped responsive className="border">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Driver Name</th>
-                    <th>Address</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Amily</td>
-                    <td>Kuala Lumpur, Malaysia</td>
-                    <td>amyfood@gmail.com</td>
-                    <td>0857261236718</td>
-                  </tr>
-                </tbody>
-              </Table>
+              <Row>
+                <Table striped responsive className="border">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {driverUsers.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.roleData.deiverId}</td>
+                        <td>{user.roleData.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.roleData.address}</td>
+                        <td>{user.role}</td>
+                        <td>
+                          {user.approved === false ? (
+                            <button
+                              className="bg-danger rounded-3"
+                              onClick={() => handleApprove(user.userId)}
+                            >
+                              Approve
+                            </button>
+                          ) : (
+                            <button className="bg-success rounded-3">
+                              Approved
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Row>
             </Container>
           </Tab>
-
-          {/* Volunteer */}
-
-          <Tab eventKey="Voluntreer" title="Volunteer">
+          <Tab eventKey="Volunteer" title="Volunteer" className="">
             <Container>
               <h4 className="my-3 text-start">Volunteer</h4>
             </Container>
-          </Tab>
-
-          {/* Order Tabs */}
-
-          <Tab eventKey="Order" title="Order">
             <Container>
-              <h4 className="my-3 text-start">Order</h4>
-            </Container>
-
-            <Container>
-              <Table striped responsive className="border">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Member Name</th>
-                    <th>Order No</th>
-                    <th>Partner</th>
-                    <th>Driver</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>2</td>
-                    <td>Partner Name</td>
-                    <td>Driver Name</td>
-                    <td className="text-light bg-success text-center">
-                      Completed
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jennie</td>
-                    <td>7</td>
-                    <td>Partner Name</td>
-                    <td>Driver Name</td>
-                    <td className=" text-light bg-danger text-center">
-                      On Process
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
+              <Row>
+                <Table striped responsive className="border">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {volunteerUsers.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.roleData.volunteerId}</td>
+                        <td>{user.roleData.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.roleData.address}</td>
+                        <td>{user.role}</td>
+                        <td>
+                          {user.approved === false ? (
+                            <button
+                              className="bg-danger rounded-3"
+                              onClick={() => handleApprove(user.userId)}
+                            >
+                              Approve
+                            </button>
+                          ) : (
+                            <button className="bg-success rounded-3">
+                              Approved
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Row>
             </Container>
           </Tab>
-
-          {/* Donatur */}
-
-          <Tab eventKey="Donature" title="Donature">
+          <Tab eventKey="Donatur" title="Donatur" className="">
             <Container>
-              <h4 className="my-3 text-start">Donature</h4>
+              <h4 className="my-3 text-start">Donatur</h4>
             </Container>
-
             <Container>
-              <Table striped responsive className="border">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Donation</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>2000000</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jennie</td>
-                    <td>7000000</td>
-                  </tr>
-                </tbody>
-              </Table>
+              <Row>
+                <Table striped responsive className="border">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {donaturUsers.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.roleData.donaturId}</td>
+                        <td>{user.roleData.name}</td>
+                        <td>{user.email}</td>
+
+                        <td>{user.role}</td>
+                        <td>
+                          {user.approved === false ? (
+                            <button
+                              className="bg-danger rounded-3"
+                              onClick={() => handleApprove(user.userId)}
+                            >
+                              Approve
+                            </button>
+                          ) : (
+                            <button className="bg-success rounded-3">
+                              Approved
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Row>
             </Container>
           </Tab>
         </Tabs>
