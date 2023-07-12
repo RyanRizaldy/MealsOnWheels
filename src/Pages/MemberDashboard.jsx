@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import pic from '../image/fili.jpg';
 import food from '../image/pancake.jpg';
 import { Button } from 'react-bootstrap';
-import  { useState } from 'react';
+import  { useState,useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
@@ -12,10 +12,10 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 function Member(){
     const [isEditMode, setIsEditMode] = useState(false);
   const [userInfo, setUserInfo] = useState({
-    name: 'Jhon Doe',
-    email: 'johndoe@example.com',
-    address: '123 main street',
-    phone: '123',
+    name: '',
+    email: '',
+    address: '',
+    phone: '',
   });
 
   const handleToggleEditMode = () => {
@@ -48,6 +48,19 @@ function Member(){
     console.log('Updating user information:', userInfo);
     setIsEditMode(false); // Exit edit mode after submitting
   };
+useEffect(() => {
+       const userData = JSON.parse(sessionStorage.getItem("user"));
+       if (userData) {
+         setUserInfo({
+           name: userData.roleData.name,
+           email: userData.email,
+           username: userData.username || "",
+           address : userData.roleData.address ,
+           phone : userData.roleData.phone,
+           role : userData.role
+         });
+       }
+     }, []);
 
   return (
     <>
@@ -132,7 +145,7 @@ function Member(){
                 <Col lg={4} md={6} sm={12}>
                 <div className='userInfo'>
                 <h5>Status</h5>
-                <p>Member</p>
+                <p>{userInfo.role}</p>
                 </div>
                 <div className='userInfo'>
                 <h5>Meal plan active</h5>
