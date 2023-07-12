@@ -38,7 +38,7 @@ function Header() {
                  <Nav.Link href="Driver">Dashboard</Nav.Link>
               )} {userLog && userLog.role === "partner" && (
                 <Nav.Link href="Partner">Dashboard</Nav.Link>
-             )} {userLog && userLog.role === "donor" && (
+             )} {userLog && userLog.role === "donatur" && (
               <Nav.Link href="Donor">Dashboard</Nav.Link>
            )}
             {userLog && userLog.role === "volunteer" && (
@@ -47,6 +47,7 @@ function Header() {
                {userLog && userLog.role === "admin" && (
                  <Nav.Link href="Admin">Dashboard</Nav.Link>
               )}
+              
               
             </Nav>
                   

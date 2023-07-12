@@ -11,10 +11,19 @@ import { useState, useEffect } from 'react';
 
 function Partner() {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [name, setName] = useState('Rice Garden');
-  const [email, setEmail] = useState('ricegarden@example.com');
-  const [address, setAddress] = useState('123 main street');
-  const [phone, setPhone] = useState('123');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    address: "",
+    phone: "",
+    role: "",
+  });
+
+  
 
   const handleToggleEditMode = () => {
     setIsEditMode((prevEditMode) => !prevEditMode);
@@ -49,6 +58,7 @@ function Partner() {
 const [userLog,setUserLog] = useState(null)
   useEffect(()=>{
     setUserLog(JSON.parse(sessionStorage.getItem("user")))
+    
   },[])
 
 const [mealsName, setMealsName] = useState('');
@@ -90,6 +100,24 @@ const handleUpload = (event) => {
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
+  
+ useEffect(() => {
+   const userData = JSON.parse(sessionStorage.getItem("user"));
+   if (userData) {
+     setUserInfo({
+       name: userData.roleData.name,
+       email: userData.email,
+       username: userData.username || "",
+       address: userData.roleData.address,
+       phone: userData.roleData.phone,
+       role: userData.role,
+     });
+   }
+ }, []);
+  
+
+
+
 
   let content;
 
@@ -202,7 +230,7 @@ const handleUpload = (event) => {
     content = 
     <>
       <Container>
-      <Form  onSubmit={handleUpload} encType="multipart/form-data" className="px-4">
+      <Form  onSubmit={handleUpload} encType="multipart/form-data" className="px-5">
           <Form.Group className="formInput mb-3">
             <Form.Label>Meals Name</Form.Label>
             <Form.Control
@@ -264,7 +292,7 @@ const handleUpload = (event) => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <div className="loginButtonWrapper">
+          <div className="loginButtonWrapper mb-5">
             <Button variant="dark" className="loginButton" type="submit">
               Add
             </Button>
@@ -278,18 +306,36 @@ const handleUpload = (event) => {
       <div className="userInfoContainer">
         <Container>
           <Row>
-            <Col lg={12} md={12} sm={12} style={{ display:'flex',justifyContent:'flex-end'}} >
-              <Button onClick={handleToggleEditMode} style={{ margin: '15px',borderRadius:'20px',padding:'10px 20px' }} variant='dark'>
-                {isEditMode ? 'View Profile' : 'Edit Profile'}
+            <Col
+              lg={12}
+              md={12}
+              sm={12}
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
+              <Button
+                onClick={handleToggleEditMode}
+                style={{
+                  margin: "15px",
+                  borderRadius: "20px",
+                  padding: "10px 20px",
+                }}
+                variant="dark"
+              >
+                {isEditMode ? "View Profile" : "Edit Profile"}
               </Button>
             </Col>
             <Col lg={4} md={12} sm={12} className="userPic">
-            <img src={pic} alt="Logo" height={"150px"} className='rounded-circle'/>
+              <img
+                src={pic}
+                alt="Logo"
+                height={"150px"}
+                className="rounded-circle"
+              />
             </Col>
             <Col lg={4} md={6} sm={12}>
               {isEditMode ? (
                 <Form onSubmit={handleSubmit}>
-                   <div className="userInfo">
+                  <div className="userInfo">
                     <h5>Name</h5>
                     <Form.Control
                       type="text"
@@ -298,7 +344,7 @@ const handleUpload = (event) => {
                       onChange={(e) => setName(e.target.value)}
                       disabled={!isEditMode}
                       required
-                      style={{outline:'none',background: "rgba(0,0,0,0.0)"}}
+                      style={{ outline: "none", background: "rgba(0,0,0,0.0)" }}
                     />
                   </div>
                   <div className="userInfo">
@@ -307,10 +353,10 @@ const handleUpload = (event) => {
                       type="email"
                       name="email"
                       value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={!isEditMode}
-                required
-                      style={{outline:'none',background: "rgba(0,0,0,0.0)"}} 
+                      onChange={(e) => setEmail(e.target.value)}
+                      disabled={!isEditMode}
+                      required
+                      style={{ outline: "none", background: "rgba(0,0,0,0.0)" }}
                     />
                   </div>
                   <div className="userInfo">
@@ -319,10 +365,10 @@ const handleUpload = (event) => {
                       type="text"
                       name="address"
                       value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                disabled={!isEditMode}
-                required
-                      style={{outline:'none',background: "rgba(0,0,0,0.0)"}} 
+                      onChange={(e) => setAddress(e.target.value)}
+                      disabled={!isEditMode}
+                      required
+                      style={{ outline: "none", background: "rgba(0,0,0,0.0)" }}
                     />
                   </div>
                   <div className="userInfo">
@@ -334,65 +380,78 @@ const handleUpload = (event) => {
                       onChange={(e) => setPhone(e.target.value)}
                       disabled={!isEditMode}
                       required
-                      style={{outline:'none',background: "rgba(0,0,0,0.0)"}} 
+                      style={{ outline: "none", background: "rgba(0,0,0,0.0)" }}
                     />
                   </div>
-                  <Button type="submit" variant='dark' style={{marginTop:"20px"}}>Update</Button>
+                  <Button
+                    type="submit"
+                    variant="dark"
+                    style={{ marginTop: "20px" }}
+                  >
+                    Update
+                  </Button>
                 </Form>
               ) : (
                 <>
-                <div className="userInfo">
-                  <h5>Name</h5>
-                  <p id="name">{name}</p>
-                </div>
-                <div className="userInfo">
-                  <h5>Email</h5>
-                  <p id="email">{email}</p>
-                </div>
-                <div className="userInfo">
-                  <h5>Address</h5>
-                  <p id="address">{address}</p>
-                </div>
-                <div className="userInfo">
-                  <h5>Phone</h5>
-                  <p id="phone">{phone}</p>
-                </div>
-
+                  <div className="userInfo">
+                    <h5>Name</h5>
+                    <p id="name">{userInfo.name}</p>
+                  </div>
+                  <div className="userInfo">
+                    <h5>Email</h5>
+                    <p id="email">{userInfo.email}</p>
+                  </div>
+                  <div className="userInfo">
+                    <h5>Address</h5>
+                    <p id="address">{userInfo.address}</p>
+                  </div>
                 </>
               )}
-                </Col>
-                <Col lg={4} md={6} sm={12}>
-                <div className='userInfo'>
+            </Col>
+
+            <Col lg={4} md={6} sm={12}>
+              <div className="userInfo">
+                <h5>Phone</h5>
+                <p id="phone">{userInfo.phone}</p>
+              </div>
+
+              <div className="userInfo">
                 <h5>Status</h5>
-                <p>Member</p>
-                </div>
-                
-                </Col>
-                </Row>
-                </Container>
-                </div>
+                <p>{userInfo.role}</p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
 
       <Container className="contentTitle">
-      <div class="d-flex justify-content-start text-decoration-none py-4 text-black">
+        <div class="d-flex justify-content-start text-decoration-none py-4 text-black">
+          <Button
+            className={selectedOption === "task" ? "active" : ""}
+            onClick={() => handleOptionChange("task")}
+            variant="outline"
+          >
+            Task
+          </Button>
+          <Button
+            className={selectedOption === "progress" ? "active" : ""}
+            onClick={() => handleOptionChange("progress")}
+            variant="outline"
+          >
+            Progress
+          </Button>
+          <Button
+            className= {selectedOption === "addMeals" ? "active" : ""}
+            onClick={() => handleOptionChange("addMeals")}
+            variant="outline"
             
-            <Button className={selectedOption === 'task' ? 'active' : ''} onClick={() => handleOptionChange('task')} variant="outline">
-              Task
-            </Button>
-            <Button className={selectedOption === 'progress' ? 'active' : ''}onClick={() => handleOptionChange('progress')} variant="outline">
-             Progress
-            </Button>
-            <Button className={selectedOption === 'addMeals' ? 'active' : ''}onClick={() => handleOptionChange('addMeals')} variant="outline">
+          >
             Add Meals
-            </Button>
-        
-      </div>
+          </Button>
+        </div>
       </Container>
-      
 
-
-          {content}
-       
-      
+      {content}
     </>
   );
 }
