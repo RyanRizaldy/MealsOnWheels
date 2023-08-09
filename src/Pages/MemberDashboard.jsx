@@ -127,9 +127,7 @@ function Member() {
     content = (
       <>
         <div className="contentWrapper">
-          <Container>
-           
-          </Container>
+          <Container></Container>
         </div>
       </>
     );

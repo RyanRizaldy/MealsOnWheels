@@ -8,14 +8,15 @@ import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import OrderList from "../Components/OrderList";
 
 function Partner() {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
 
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -24,9 +25,6 @@ function Partner() {
     phone: "",
     role: "",
   });
-
-  
-
 
   const handleToggleEditMode = () => {
     setIsEditMode((prevEditMode) => !prevEditMode);
@@ -42,7 +40,8 @@ function Partner() {
       phone: phone,
     };
 
-    axios.post('http://localhost:8080/api/user/new_partner', userData)
+    axios
+      .post("http://localhost:8080/api/user/new_partner", userData)
       .then((response) => {
         console.log(response.data);
         // Handle success response
@@ -56,109 +55,100 @@ function Partner() {
       });
   };
 
-//UPLOAD MEALS
+  //UPLOAD MEALS
 
-const [userLog,setUserLog] = useState(null)
-  useEffect(()=>{
-    setUserLog(JSON.parse(sessionStorage.getItem("user")))
-    
-  },[])
+  const [userLog, setUserLog] = useState(null);
+  useEffect(() => {
+    setUserLog(JSON.parse(sessionStorage.getItem("user")));
+  }, []);
 
-const [mealsName, setMealsName] = useState('');
-const [carb, setCarb] = useState('');
-const [fat, setFat] = useState('');
-const [protein, setProtein] = useState('');
-const [file, setFile] = useState(null);
+  const [mealsName, setMealsName] = useState("");
+  const [carb, setCarb] = useState("");
+  const [fat, setFat] = useState("");
+  const [protein, setProtein] = useState("");
+  const [file, setFile] = useState(null);
 
+  const handleUpload = (event) => {
+    event.preventDefault();
 
-const handleUpload = (event) => {
-  event.preventDefault();
+    // Create form data object
+    const formData = new FormData();
+    formData.append("name", mealsName);
+    formData.append("carb", carb);
+    formData.append("fat", fat);
+    formData.append("protein", protein);
+    formData.append("fileImage", file);
+    formData.append("partnerId", userLog.roleData.partnerId);
 
-  // Create form data object
-  const formData = new FormData();
-  formData.append('name', mealsName);
-  formData.append('carb', carb);
-  formData.append('fat', fat);
-  formData.append('protein', protein);
-  formData.append('fileImage', file);
-  formData.append('partnerId',userLog.roleData.partnerId);
-
-  // Send the form data to the server
-  fetch('http://localhost:8080/api/partner/post_menu', {
-    method: 'POST',
-    body: formData,
-  })
-    .then((data) => {
-      console.log(data); // Handle the response from the server
-      alert("Successfully uploaded!");
+    // Send the form data to the server
+    fetch("http://localhost:8080/api/partner/post_menu", {
+      method: "POST",
+      body: formData,
     })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-};
-//END UPLOAD MEALS
+      .then((data) => {
+        console.log(data); // Handle the response from the server
+        alert("Successfully uploaded!");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  //END UPLOAD MEALS
 
-  const [selectedOption, setSelectedOption] = useState('progress');
+  const [selectedOption, setSelectedOption] = useState("progress");
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
-  
- useEffect(() => {
-   const userData = JSON.parse(sessionStorage.getItem("user"));
-   if (userData) {
-     setUserInfo({
-       name: userData.roleData.name,
-       email: userData.email,
-       username: userData.username || "",
-       address: userData.roleData.address,
-       phone: userData.roleData.phone,
-       role: userData.role,
-     });
-   }
- }, []);
 
-
-
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem("user"));
+    if (userData) {
+      setUserInfo({
+        name: userData.roleData.name,
+        email: userData.email,
+        username: userData.username || "",
+        address: userData.roleData.address,
+        phone: userData.roleData.phone,
+        role: userData.role,
+      });
+    }
+  }, []);
 
   let content;
 
- if (selectedOption === 'progress') {
-    content = 
-    <>
-      <Container>
-              <h4 className="my-3 text-start">Order</h4>
-            </Container>
+  if (selectedOption === "progress") {
+    content = (
+      <>
+        <Container>
+          <h4 className="my-3 text-start">Order</h4>
+        </Container>
 
-            <Container>
-              <OrderList/>
-            </Container>
-    </>;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-  } else if (selectedOption === 'addMeals') {
-    content = 
-    <>
-      <Container>
-      <Form  onSubmit={handleUpload} encType="multipart/form-data" className="px-5">
-          <Form.Group className="formInput mb-3">
-            <Form.Label>Meals Name</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
-              type="text"
               value={mealsName}
           onChange={(e) => setMealsName(e.target.value)}
           required
             />
           </Form.Group>
           
+        <Container>
+          <Form
+            onSubmit={handleUpload}
+            encType="multipart/form-data"
+            className="px-5"
+          >
+            <Form.Group className="formInput mb-3">
+              <Form.Label>Meals Name</Form.Label>
+              <Form.Control
+                style={{ outline: "none", boxShadow: "none" }}
+                type="text"
+                value={mealsName}
+                onChange={(e) => setMealsName(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-          <Form.Group className="formInput mb-3">
-            <Form.Label>carb</Form.Label>
-            <Form.Control
-              style={{ outline: "none", boxShadow: "none" }}
-              type="text"
-              value={carb}
-              onChange={(e) => setCarb(e.target.value)}
-              required
             />
           </Form.Group>
           
@@ -176,7 +166,6 @@ const handleUpload = (event) => {
           
           <Form.Group className="formInput mb-3">
             <Form.Label>Protein</Form.Label>
-            <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
               value={protein}
@@ -199,15 +188,36 @@ const handleUpload = (event) => {
               
             </Form.Control.Feedback>
           </Form.Group>
+                value={protein}
+                onChange={(e) => setProtein(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-          <div className="loginButtonWrapper mb-5">
-            <Button variant="dark" className="loginButton" type="submit">
-              Add
-            </Button>
-          </div>
-        </Form>
-      </Container>
-    </>;
+            <Form.Group className="position-relative mb-3">
+              <Form.Label>File</Form.Label>
+              <Form.Control
+                type="file"
+                required
+                name="file"
+                accept="image/*"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+              <Form.Control.Feedback
+                type="invalid"
+                tooltip
+              ></Form.Control.Feedback>
+            </Form.Group>
+
+            <div className="loginButtonWrapper mb-5">
+              <Button variant="dark" className="loginButton" type="submit">
+                Add
+              </Button>
+            </div>
+          </Form>
+        </Container>
+      </>
+    );
   }
   return (
     <>
@@ -342,10 +352,9 @@ const handleUpload = (event) => {
             Progress
           </Button>
           <Button
-            className= {selectedOption === "addMeals" ? "active" : ""}
+            className={selectedOption === "addMeals" ? "active" : ""}
             onClick={() => handleOptionChange("addMeals")}
             variant="outline"
-            
           >
             Add Meals
           </Button>

@@ -1,112 +1,101 @@
-import { Form } from 'react-bootstrap';
-import React, { useState } from 'react'
+import { Form } from "react-bootstrap";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import pic from "../image/rothy.png";
 
 import { Button } from "react-bootstrap";
-import Table from 'react-bootstrap/Table';
+import Table from "react-bootstrap/Table";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Contact from './Contact';
+import Contact from "./Contact";
 
-import { useEffect } from 'react';
-import axios from 'axios';
-
+import { useEffect } from "react";
+import axios from "axios";
 
 function Admin() {
+  const [users, setUsers] = useState([]);
 
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    username: "",
+  });
 
- const [users, setUsers] = useState([]);
+  const handleToggleEditMode = () => {
+    if (isEditMode) {
+      setIsEditMode(false);
+    } else {
+      setUserInfo((prevUserInfo) => ({
+        ...prevUserInfo,
+        name: document.getElementById("name").textContent,
+        email: document.getElementById("email").textContent,
+        username: document.getElementById("username").textContent,
+      }));
+      setIsEditMode(true);
+    }
+  };
 
-   const [isEditMode, setIsEditMode] = useState(false);
-   const [userInfo, setUserInfo] = useState({
-     name: "",
-     email: "",
-     username: "",
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserInfo((prevUserInfo) => ({
+      ...prevUserInfo,
+      [name]: value,
+    }));
+  };
 
-   });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Perform update logic with userInfo
+    // e.g., send data to server, update database, etc.
+    console.log("Updating user information:", userInfo);
+    setIsEditMode(false); // Exit edit mode after submitting
+  };
 
-   const handleToggleEditMode = () => {
-     if (isEditMode) {
-       setIsEditMode(false);
-     } else {
-       setUserInfo((prevUserInfo) => ({
-         ...prevUserInfo,
-         name: document.getElementById("name").textContent,
-         email: document.getElementById("email").textContent,
-         username: document.getElementById("username").textContent,
-       
-       }));
-       setIsEditMode(true);
-     }
-   };
+  useEffect(() => {
+    const fetchMenus = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/admin/all_user"
+        );
+        setUsers(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching menus:", error);
+      }
+    };
 
-   const handleInputChange = (event) => {
-     const { name, value } = event.target;
-     setUserInfo((prevUserInfo) => ({
-       ...prevUserInfo,
-       [name]: value,
-     }));
-   };
+    fetchMenus();
+  }, []);
 
-   const handleSubmit = (event) => {
-     event.preventDefault();
-     // Perform update logic with userInfo
-     // e.g., send data to server, update database, etc.
-     console.log("Updating user information:", userInfo);
-     setIsEditMode(false); // Exit edit mode after submitting
-   };
-  
+  const handleApprove = async (id) => {
+    try {
+      await axios.post(`http://localhost:8080/api/admin/approve/${id}`);
+      // Update the state or fetch the users again if needed
+      // ...
+    } catch (error) {
+      console.error("Error approving user:", error);
+    }
+  };
 
+  const memberUsers = users.filter((user) => user.role === "member");
+  const partnerUsers = users.filter((user) => user.role === "partner");
+  const driverUsers = users.filter((user) => user.role === "driver");
+  const volunteerUsers = users.filter((user) => user.role === "volunteer");
+  const donaturUsers = users.filter((user) => user.role === "donatur");
 
- useEffect(() => {
-   const fetchMenus = async () => {
-     try {
-       const response = await axios.get(
-         "http://localhost:8080/api/admin/all_user"
-       );
-       setUsers(response.data);
-       console.log(response.data);
-     } catch (error) {
-       console.error("Error fetching menus:", error);
-     }
-   };
-
-   fetchMenus();
- }, []);
-
- const handleApprove = async (id) => {
-   try {
-     await axios.post(`http://localhost:8080/api/admin/approve/${id}`);
-     // Update the state or fetch the users again if needed
-     // ...
-   } catch (error) {
-     console.error("Error approving user:", error);
-   }
- };
-
- const memberUsers = users.filter((user) => user.role === "member");
- const partnerUsers = users.filter((user) => user.role === "partner");
- const driverUsers = users.filter((user) => user.role === "driver");
- const volunteerUsers = users.filter((user) => user.role === "volunteer");
- const donaturUsers = users.filter((user) => user.role === "donatur");
-
-
-
- useEffect(() => {
-   const userData = JSON.parse(sessionStorage.getItem("user"));
-   if (userData) {
-     setUserInfo({
-       name: userData.roleData.name,
-       email: userData.email,
-       username: userData.username || "",
-       
-     });
-   }
- }, []);
-
+  useEffect(() => {
+    const userData = JSON.parse(sessionStorage.getItem("user"));
+    if (userData) {
+      setUserInfo({
+        name: userData.roleData.name,
+        email: userData.email,
+        username: userData.username || "",
+      });
+    }
+  }, []);
 
   return (
     <>
