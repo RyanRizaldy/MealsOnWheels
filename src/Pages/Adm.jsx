@@ -110,8 +110,10 @@ function Admin() {
 
   return (
     <>
-      <div className="userInfoContainer">
-        <Container>
+
+      <div style={{ backgroundColor: "rgba(232,208,188,1)" }}>
+        <Container className="userInfoContainer align-items-center">
+
           <Row>
             <Col
               lg={12}
@@ -119,7 +121,7 @@ function Admin() {
               sm={12}
               style={{ display: "flex", justifyContent: "flex-end" }}
             >
-              <Button
+              {/* <Button
                 onClick={handleToggleEditMode}
                 style={{
                   margin: "15px",
@@ -129,7 +131,7 @@ function Admin() {
                 variant="dark"
               >
                 {isEditMode ? "View Profile" : "Edit Profile"}
-              </Button>
+              </Button> */}
             </Col>
             <Col lg={4} md={12} sm={12} className="userPic">
               <img
@@ -139,6 +141,7 @@ function Admin() {
                 className="rounded-circle"
               />
             </Col>
+            <Col lg={12} md={6} sm={12} ></Col>
             <Col lg={4} md={6} sm={12}>
               {isEditMode ? (
                 <Form onSubmit={handleSubmit}>

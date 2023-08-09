@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import OrderList from "../Components/OrderList";
 
 function Partner() {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -15,6 +16,7 @@ function Partner() {
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -24,6 +26,7 @@ function Partner() {
   });
 
   
+
 
   const handleToggleEditMode = () => {
     setIsEditMode((prevEditMode) => !prevEditMode);
@@ -114,9 +117,44 @@ const handleUpload = (event) => {
      });
    }
  }, []);
-  
 
+//   //  START TABLE ORDER//
+//  const [orderList, setOrderList] = useState(null);
 
+//  useEffect(()=>{
+//    setUserLog(JSON.parse(sessionStorage.getItem("user")))
+//    try {
+//      axios.get(
+//        "http://localhost:8080/api/order/list_order",
+//      ).then((response)=>{
+//       setOrderList(response.data)
+       
+//      })
+
+//    } catch (error) {
+//      console.error("Error fetching order:", error);
+//    }
+//  },[])
+// //  END TABLE ORDER//
+
+// const handleProsesOrder = (orderId, partnerId) => {
+//   try {
+//     axios.post(`http://localhost:8080/api/proses_order/${orderId}`, { partnerId })
+//       .then(() => {
+//         // Handle success if needed
+//         console.log("success")
+//       })
+//       .catch((error) => {
+//         console.error('Error processing order:', error);
+//         // Handle error if needed
+//         alert("error")
+//       });
+//   } catch (error) {
+//     console.error('Error processing order:', error);
+//     // Handle error if needed
+//     alert("error")
+//   }
+// };
 
 
   let content;
@@ -190,42 +228,39 @@ const handleUpload = (event) => {
             </Container>
 
             <Container>
-              <Table striped responsive className="border">
+            {/* <Table striped responsive className="border">
                 <thead>
-                  <tr>
+                  <tr >
                     <th>No</th>
                     <th>Member Name</th>
                     <th>Order No</th>
                     <th>Partner</th>
                     <th>Driver</th>
                     <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>2</td>
-                    <td>Partner Name</td>
-                    <td>Driver Name</td>
-                    <td className="text-light bg-success text-center">
-                      Completed
+
+                  {orderList && orderList.map((value,index)=>(
+                    <tr key={value.orderId}>
+                    <td>{index + 1}</td>
+                    <td>{value.member.name}</td>
+                    <td>{value.orderId}</td>
+                    <td>{value.partnerName === null ? "-":value.partnerName}</td>
+                    <td>{value.driver === null ? "-":value.driver.name}</td>
+                    <td className="">
+                      {value.status}
                     </td>
+                    <td><Button onClick={() => handleProsesOrder(value.orderId, value.partnerId)}>action</Button></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jennie</td>
-                    <td>7</td>
-                    <td>Partner Name</td>
-                    <td>Driver Name</td>
-                    <td className=" text-light bg-danger text-center">
-                      On Process
-                    </td>
-                  </tr>
+                  ))}
+                  
                 </tbody>
-              </Table>
+              </Table> */}
+              <OrderList/>
             </Container>
-    </>;
+    </>;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
   } else if (selectedOption === 'addMeals') {
     content = 
     <>

@@ -8,8 +8,10 @@ import food1 from "../image/Food1.png";
 import food2 from "../image/Food2.png";
 import  { useState, useEffect } from 'react';
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 export default function Menu() {
+
   const [selectedOption, setSelectedOption] = useState('all');
 
   const handleOptionChange = (option) => {
@@ -17,6 +19,7 @@ export default function Menu() {
   };
 
    const [menus, setMenus] = useState([]);
+   const [userLog,setUserLog] = useState(null)
 
    useEffect(() => {
      const fetchMenus = async () => {
@@ -31,7 +34,34 @@ export default function Menu() {
      };
 
      fetchMenus();
+     setUserLog(JSON.parse(sessionStorage.getItem("user")))
    }, []);
+
+   const [order, setOrder] = useState(null);
+
+   const handleOrder = async (menuId)=>{
+    console.log(userLog.roleData.memberId,menuId)
+    const order ={
+      menuId : parseInt(menuId),
+      memberId : userLog.roleData.memberId
+    }
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/order/new_order",order
+      ).then((response)=>{
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Order success',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+
+    } catch (error) {
+      console.error("Error fetching order:", error);
+    }
+   } 
 
   let content;
 
@@ -69,7 +99,7 @@ export default function Menu() {
                           Protein
                         </Col>
                       </Row>
-                      <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
+                      <Button className="bg-dark rounded-4 mt-3 border-0 px-3" onClick={()=>handleOrder(menu.menuId)}>
                         + Add
                       </Button>
                     </div>
@@ -123,7 +153,7 @@ export default function Menu() {
                       </Col>
                       <Col>30g <br/>Protein</Col>
                     </Row>
-                    <Button className="bg-dark rounded-4 mt-3 border-0 px-3">
+                    <Button className="bg-dark rounded-4 mt-3 border-0 px-3" >
                       + Add
                     </Button>
                   </div>
@@ -227,27 +257,6 @@ export default function Menu() {
             >
               all Meal
             </Button>
-            {/* <Button
-              className={selectedOption === "plan1" ? "active" : ""}
-              onClick={() => handleOptionChange("plan1")}
-              variant="outline"
-            >
-              Meal Plan1
-            </Button>
-            <Button
-              className={selectedOption === "plan2" ? "active" : ""}
-              onClick={() => handleOptionChange("plan2")}
-              variant="outline"
-            >
-              Meal Plan2
-            </Button>
-            <Button
-              className={selectedOption === "plan3" ? "active" : ""}
-              onClick={() => handleOptionChange("plan3")}
-              variant="outline"
-            >
-              Meal Plan3
-            </Button> */}
           </div>
         </Container>
         <Container>
