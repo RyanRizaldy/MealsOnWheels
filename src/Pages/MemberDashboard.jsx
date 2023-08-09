@@ -92,7 +92,7 @@ function Member() {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState("task");
+  const [selectedOption, setSelectedOption] = useState("progress");
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
