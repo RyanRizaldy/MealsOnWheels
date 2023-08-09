@@ -27,6 +27,7 @@ export default function Menu() {
          const response = await axios.get(
            "http://localhost:8080/api/partner/list_menu"
          );
+         console.log(response.data)
          setMenus(response.data);
        } catch (error) {
          console.error("Error fetching menus:", error);

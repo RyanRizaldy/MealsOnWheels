@@ -6,6 +6,7 @@ import Pic from "../image/grab.png";
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import Delivery from "../Components/Delivery"
 
 function Driver() {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -62,6 +63,34 @@ function Driver() {
     }
   };
 
+  const [selectedOption, setSelectedOption] = useState('progress');
+
+  const handleOptionChange = (option) => {
+    setSelectedOption(option);
+  };
+  let content;
+
+  if (selectedOption === 'task') {
+    content = 
+    <>
+    <div className="contentWrapper">
+        <Container>
+        
+        </Container>
+      </div>
+    </>;
+  } else if (selectedOption === 'progress') {
+    content = 
+    <>
+      <Container>
+              <h4 className="my-3 text-start">Order</h4>
+            </Container>
+
+            <Container>
+              <Delivery/>
+            </Container>
+    </>;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+  }
   return (
     <>
       <div className="userInfoContainer">
@@ -192,77 +221,22 @@ function Driver() {
       <Container className="contentTitle">
         <h2>Help Us Deliver Meals For the Member</h2>
       </Container>
-
-      <div className="contentWrapper">
-        <Container>
-          <Row>
-            <Col lg={12}></Col>
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <h5 style={{ fontWeight: "bold", marginBottom: "20px" }}>
-                  Meals Plan 1
-                </h5>
-                <h5>Member name</h5>
-                <h4 style={{ margin: "50px 0" }}>
-                  this will be the address of member
-                </h4>
-                <div className="reciveWrapper">
-                  <Button variant="dark" className="reciveButton">
-                    Take Order
-                  </Button>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <h5 style={{ fontWeight: "bold", marginBottom: "20px" }}>
-                  Meals Plan 1
-                </h5>
-                <h5>Member name</h5>
-                <h4 style={{ margin: "50px 0" }}>
-                  this will be the address of member
-                </h4>
-                <div className="reciveWrapper">
-                  <Button variant="dark" className="reciveButton">
-                    Take Order
-                  </Button>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <h5 style={{ fontWeight: "bold", marginBottom: "20px" }}>
-                  Meals Plan 1
-                </h5>
-                <h5>Member name</h5>
-                <h4 style={{ margin: "50px 0" }}>
-                  this will be the address of member
-                </h4>
-                <div className="reciveWrapper">
-                  <Button variant="dark" className="reciveButton">
-                    Take Order
-                  </Button>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <h5 style={{ fontWeight: "bold", marginBottom: "20px" }}>
-                  Meals Plan 1
-                </h5>
-                <h5>Member name</h5>
-                <h4 style={{ margin: "50px 0" }}>
-                  this will be the address of member
-                </h4>
-                <div className="reciveWrapper">
-                  <Button variant="dark" className="reciveButton">
-                    Take Order
-                  </Button>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+      
+      <Container className="contentTitle">
+        <div class="d-flex justify-content-start text-decoration-none py-4 text-black">
+          <Button
+            className={selectedOption === "progress" ? "active" : ""}
+            onClick={() => handleOptionChange("progress")}
+            variant="outline"
+          >
+            Progress
+          </Button>
+        </div>
+      </Container>
+      <div className="">
+      
+        
+          {content}
       </div>
     </>
   );

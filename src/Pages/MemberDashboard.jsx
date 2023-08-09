@@ -1,17 +1,13 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import pic from '../image/fili.jpg';
-import food from '../image/pancake.jpg';
-import { Button } from 'react-bootstrap';
-import  { useEffect, useState } from 'react';
-import Form from 'react-bootstrap/Form';
-import Table from 'react-bootstrap/Table';
-import axios from 'axios';
-
-function Member(){
-    const [isEditMode, setIsEditMode] = useState(false);
-
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import pic from "../image/fili.jpg";
+import food from "../image/pancake.jpg";
+import { Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table";
+import axios from "axios";
 
 function Member() {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -68,12 +64,9 @@ function Member() {
     }
   };
 
-
   const [orderList, setOrderList] = useState(null);
-  const [userLog,setUserLog] = useState(null)
+  const [userLog, setUserLog] = useState(null);
 
-  
-  
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("user"));
     setUserLog(user);
@@ -83,155 +76,110 @@ function Member() {
 
     // Check if memberId exists before making the API call
     if (memberId) {
-      try {
-        axios.get(`http://localhost:8080/api/order/list_order/${memberId}`)
-          .then((response) => {
-            setOrderList(response.data);
-          });
-      } catch (error) {
-        console.error("Error fetching order:", error);
-      }
+      showListOrder(memberId);
     }
   }, []);
-  
 
+  const showListOrder = (memberId) => {
+    try {
+      axios
+        .get(`http://localhost:8080/api/order/list_order/${memberId}`)
+        .then((response) => {
+          setOrderList(response.data);
+        });
+    } catch (error) {
+      console.error("Error fetching order:", error);
+    }
+  };
 
-
-  const [selectedOption, setSelectedOption] = useState('task');
+  const [selectedOption, setSelectedOption] = useState("task");
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
   };
 
+  const handleDoneOrder = async (orderId) => {
+    try {
+      await axios
+        .post(`http://localhost:8080/api/order/done_order/${orderId}`)
+        .then((response) => {
+          // Extract the memberId from user data in sessionStorage
+          const user = JSON.parse(sessionStorage.getItem("user"));
+          const memberId = user?.roleData?.memberId;
+
+          // Check if memberId exists before making the API call
+          if (memberId) {
+            showListOrder(memberId);
+          }
+        });
+      // Refresh the order list after successful processing
+    } catch (error) {
+      console.error("Error processing order:", error);
+      // Handle error if needed
+    }
+  };
+
   let content;
 
-  if(!orderList)return null;
-  
-  if (selectedOption === 'task') {
-    content = 
-    <>
-    <div className='contentWrapper'>
-                <Container>
-                <Row>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                <div className='card'>
-                <h6 style={{fontWeight:"bold"}}>1 Jan</h6>
-                <h5>Monday</h5>
-                <img src={food} alt="Logo" />
-                <h4>Lemon Poppy Seed Pancakes with Sausage and Berry Compote</h4>
-                <div className='reciveWrapper'> 
-                <div className='cardStatus'>
-                <p>Recived</p>
-                </div>
-                </div>
-                </div>
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                <div className='card'>
-                <h6 style={{fontWeight:"bold"}}>1 Jan</h6>
-                <h5>Monday</h5>
-                <img src={food} alt="Logo" />
-                <h4>Lemon Poppy Seed Pancakes with Sausage and Berry Compote</h4>
-                <div className='reciveWrapper'> 
-                <Button variant='dark' className='reciveButton' >Recive</Button>
-                </div>
-                </div>
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                <div className='card'>
-                <h6 style={{fontWeight:"bold"}}>1 Jan</h6>
-                <h5>Monday</h5>
-                <img src={food} alt="Logo" />
-                <h4>Lemon Poppy Seed Pancakes with Sausage and Berry Compote</h4>
-                <div className='reciveWrapper'> 
-                <div className='cardStatus'>
-                <p>Pending</p>
-                </div>
-                </div>
-                </div>
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                <div className='card'>
-                <h6 style={{fontWeight:"bold"}}>1 Jan</h6>
-                <h5>Monday</h5>
-                <img src={food} alt="Logo" />
-                <h4>Lemon Poppy Seed Pancakes with Sausage and Berry Compote</h4>
-                <div className='reciveWrapper'> 
-                <div className='cardStatus'>
-                <p>Pending</p>
-                </div>
-                </div>
-                </div>
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                <div className='card'>
-                <h6 style={{fontWeight:"bold"}}>1 Jan</h6>
-                <h5>Monday</h5>
-                <img src={food} alt="Logo" />
-                <h4>Lemon Poppy Seed Pancakes with Sausage and Berry Compote</h4>
-                <div className='reciveWrapper'> 
-                <div className='cardStatus'>
-                <p>Pending</p>
-                </div>
-                </div>
-                </div>
-                </Col>
-                <Col lg={3} md={6} sm={12} className="cardWrapper">
-                <div className='card'>
-                <h6 style={{fontWeight:"bold"}}>1 Jan</h6>
-                <h5>Monday</h5>
-                <img src={food} alt="Logo" />
-                <h4>Lemon Poppy Seed Pancakes with Sausage and Berry Compote</h4>
-                <div className='reciveWrapper'> 
-                <div className='cardStatus'>
-                <p>Pending</p>
-                </div>
-                </div>
-                </div>
+  // if(!orderList)return null;
 
-                </Col>
-                </Row>
-                </Container>
-                </div>
-    </>;
-  } else if (selectedOption === 'progress') {
-    content = 
-    <>
-      <Container>
-              <h4 className="my-3 text-start">Order</h4>
-            </Container>
+  if (selectedOption === "task") {
+    content = (
+      <>
+        <div className="contentWrapper">
+          <Container>
+           
+          </Container>
+        </div>
+      </>
+    );
+  } else if (selectedOption === "progress") {
+    content = (
+      <>
+        <Container>
+          <h4 className="my-3 text-start">Order</h4>
+        </Container>
 
-            <Container>
-              <Table striped responsive className="border">
-                <thead>
+        <Container>
+          <Table striped responsive className="border">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Member Name</th>
+                <th>Order No</th>
+                <th>Partner</th>
+                <th>Driver</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orderList &&
+                orderList.map((value, index) => (
                   <tr>
-                    <th>No</th>
-                    <th>Member Name</th>
-                    <th>Order No</th>
-                    <th>Partner</th>
-                    <th>Driver</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  {orderList && orderList.map((value,index)=>(
-                    <tr>
                     <td>{index + 1}</td>
                     <td>{value.member.name}</td>
                     <td>{value.orderId}</td>
-                    <td>{value.partnerName === null ? "-":value.partnerName}</td>
-                    <td>{value.driver === null ? "-":value.driver.name}</td>
-                    <td className="">
-                      {value.status}
+                    <td>
+                      {value.partnerName === null ? "-" : value.partnerName}
                     </td>
+                    <td>{value.driver === null ? "-" : value.driver.name}</td>
+                    <td className="">{value.status}</td>
+
+                    {value.status !== "DONE" && (
+                      <td className="">
+                        <Button onClick={() => handleDoneOrder(value.orderId)}>
+                          Is meal arrived ?
+                        </Button>
+                      </td>
+                    )}
                   </tr>
-                  ))}
-                  
-                </tbody>
-              </Table>
-            </Container>
-    </>;
+                ))}
+            </tbody>
+          </Table>
+        </Container>
+      </>
+    );
   }
   return (
     <>
@@ -350,25 +298,28 @@ function Member() {
         </Container>
       </div>
 
-                <Container className='contentTitle'>
-                <h2>Your Meal Schedule</h2>
-                <div class="d-flex justify-content-start text-decoration-none py-4 text-black">
-            
-            <Button className={selectedOption === 'task' ? 'active' : ''} onClick={() => handleOptionChange('task')} variant="outline">
-              Your Meal
-            </Button>
-            <Button className={selectedOption === 'progress' ? 'active' : ''}onClick={() => handleOptionChange('progress')} variant="outline">
-             Progress
-            </Button>
-            
-        
-            </div>
-                </Container>
-                {content}
-                
-                </>
-                )
-            }
+      <Container className="contentTitle">
+        <h2>Your Meal Progress</h2>
+        <div class="d-flex justify-content-start text-decoration-none py-4 text-black">
+          {/* <Button
+            className={selectedOption === "task" ? "active" : ""}
+            onClick={() => handleOptionChange("task")}
+            variant="outline"
+          >
+            Your Meal
+          </Button> */}
+          <Button
+            className={selectedOption === "progress" ? "active" : ""}
+            onClick={() => handleOptionChange("progress")}
+            variant="outline"
+          >
+            Progress
+          </Button>
+        </div>
+      </Container>
+      {content}
+    </>
+  );
+}
 
-          }
 export default Member;

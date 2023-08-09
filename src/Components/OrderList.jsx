@@ -14,7 +14,8 @@ function OrderList() {
 
   const fetchOrderList = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/order/list_order');
+      const response = await axios.get('http://localhost:8080/api/order/list_partner_order');
+      console.log(response.data)
       setOrderList(response.data);
     } catch (error) {
       console.error('Error fetching order:', error);
@@ -22,8 +23,10 @@ function OrderList() {
   };
   
   const handleProsesOrder = async (orderId,partnerId) => {
+
     try {
-      await axios.post(`http://localhost:8080/api/order/proses_order/${orderId}`, {partnerId});
+
+      await axios.post(`http://localhost:8080/api/order/proses_order/${orderId}`);
       // Refresh the order list after successful processing
       fetchOrderList();
     } catch (error) {
@@ -57,6 +60,7 @@ function OrderList() {
                     <td className="">
                       {order.status}
                     </td>
+
               <td>
               <Button onClick={() => handleProsesOrder(order.orderId, order.partnerId)}>Process</Button>
               </td>

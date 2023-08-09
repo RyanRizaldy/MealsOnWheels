@@ -98,7 +98,7 @@ const handleUpload = (event) => {
 };
 //END UPLOAD MEALS
 
-  const [selectedOption, setSelectedOption] = useState('task');
+  const [selectedOption, setSelectedOption] = useState('progress');
 
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -118,109 +118,12 @@ const handleUpload = (event) => {
    }
  }, []);
 
-//   //  START TABLE ORDER//
-//  const [orderList, setOrderList] = useState(null);
 
-//  useEffect(()=>{
-//    setUserLog(JSON.parse(sessionStorage.getItem("user")))
-//    try {
-//      axios.get(
-//        "http://localhost:8080/api/order/list_order",
-//      ).then((response)=>{
-//       setOrderList(response.data)
-       
-//      })
-
-//    } catch (error) {
-//      console.error("Error fetching order:", error);
-//    }
-//  },[])
-// //  END TABLE ORDER//
-
-// const handleProsesOrder = (orderId, partnerId) => {
-//   try {
-//     axios.post(`http://localhost:8080/api/proses_order/${orderId}`, { partnerId })
-//       .then(() => {
-//         // Handle success if needed
-//         console.log("success")
-//       })
-//       .catch((error) => {
-//         console.error('Error processing order:', error);
-//         // Handle error if needed
-//         alert("error")
-//       });
-//   } catch (error) {
-//     console.error('Error processing order:', error);
-//     // Handle error if needed
-//     alert("error")
-//   }
-// };
 
 
   let content;
 
-  if (selectedOption === 'task') {
-    content = 
-    <>
-    <div className="contentWrapper">
-        <Container>
-          <Row>
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <h5 style={{ fontWeight: "bold", textAlign : 'center'}}>Meals Plan 1</h5>
-                <h5 className="my-3">Member Name</h5>
-
-                <h4 className="mt-3">
-                 This will be address of the member
-                </h4>
-                <div className="reciveWrapper">
-                  <div className="cardStatus">
-                    <Button variant="dark" className="reciveButton">
-                      Details
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Col>            
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <h5 style={{ fontWeight: "bold", textAlign : 'center'}}>Meals Plan 1</h5>
-                <h5 className="my-3">Member Name</h5>
-
-                <h4 className="mt-3">
-                 This will be address of the member
-                </h4>
-                <div className="reciveWrapper">
-                  <div className="cardStatus">
-                    <Button variant="dark" className="reciveButton">
-                      Details
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Col>            
-            <Col lg={3} md={6} sm={12} className="cardWrapper">
-              <div className="card">
-                <h5 style={{ fontWeight: "bold", textAlign : 'center'}}>Meals Plan 1</h5>
-                <h5 className="my-3">Member Name</h5>
-
-                <h4 className="mt-3">
-                 This will be address of the member
-                </h4>
-                <div className="reciveWrapper">
-                  <div className="cardStatus">
-                    <Button variant="dark" className="reciveButton">
-                      Details
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Col>            
-          </Row>
-        </Container>
-      </div>
-    </>;
-  } else if (selectedOption === 'progress') {
+ if (selectedOption === 'progress') {
     content = 
     <>
       <Container>
@@ -228,36 +131,6 @@ const handleUpload = (event) => {
             </Container>
 
             <Container>
-            {/* <Table striped responsive className="border">
-                <thead>
-                  <tr >
-                    <th>No</th>
-                    <th>Member Name</th>
-                    <th>Order No</th>
-                    <th>Partner</th>
-                    <th>Driver</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                  {orderList && orderList.map((value,index)=>(
-                    <tr key={value.orderId}>
-                    <td>{index + 1}</td>
-                    <td>{value.member.name}</td>
-                    <td>{value.orderId}</td>
-                    <td>{value.partnerName === null ? "-":value.partnerName}</td>
-                    <td>{value.driver === null ? "-":value.driver.name}</td>
-                    <td className="">
-                      {value.status}
-                    </td>
-                    <td><Button onClick={() => handleProsesOrder(value.orderId, value.partnerId)}>action</Button></td>
-                  </tr>
-                  ))}
-                  
-                </tbody>
-              </Table> */}
               <OrderList/>
             </Container>
     </>;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
@@ -461,13 +334,6 @@ const handleUpload = (event) => {
 
       <Container className="contentTitle">
         <div class="d-flex justify-content-start text-decoration-none py-4 text-black">
-          <Button
-            className={selectedOption === "task" ? "active" : ""}
-            onClick={() => handleOptionChange("task")}
-            variant="outline"
-          >
-            Task
-          </Button>
           <Button
             className={selectedOption === "progress" ? "active" : ""}
             onClick={() => handleOptionChange("progress")}
