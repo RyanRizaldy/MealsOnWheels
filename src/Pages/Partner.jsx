@@ -4,10 +4,9 @@ import Col from "react-bootstrap/Col";
 import pic from "../image/riceGarden.png";
 import food from "../image/pancake.jpg";
 import { Button } from "react-bootstrap";
-import Form from 'react-bootstrap/Form';
-import Table from 'react-bootstrap/Table';
+import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table";
 import axios from "axios";
-import { useState, useEffect } from 'react';
 import { useState, useEffect } from "react";
 import OrderList from "../Components/OrderList";
 
@@ -124,14 +123,14 @@ function Partner() {
           <h4 className="my-3 text-start">Order</h4>
         </Container>
 
-            <Form.Control
-              style={{ outline: "none", boxShadow: "none" }}
-              value={mealsName}
-          onChange={(e) => setMealsName(e.target.value)}
-          required
-            />
-          </Form.Group>
-          
+        <Container>
+          <OrderList />
+        </Container>
+      </>
+    );
+  } else if (selectedOption === "addMeals") {
+    content = (
+      <>
         <Container>
           <Form
             onSubmit={handleUpload}
@@ -149,45 +148,33 @@ function Partner() {
               />
             </Form.Group>
 
-            />
-          </Form.Group>
-          
+            <Form.Group className="formInput mb-3">
+              <Form.Label>carb</Form.Label>
+              <Form.Control
+                style={{ outline: "none", boxShadow: "none" }}
+                type="text"
+                value={carb}
+                onChange={(e) => setCarb(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-          <Form.Group className="formInput mb-3">
-            <Form.Label>Fat</Form.Label>
-            <Form.Control
-              style={{ outline: "none", boxShadow: "none" }}
-              type="text"
-              value={fat}
-              onChange={(e) => setFat(e.target.value)}
-              required
-            />
-          </Form.Group>
-          
-          <Form.Group className="formInput mb-3">
-            <Form.Label>Protein</Form.Label>
-              style={{ outline: "none", boxShadow: "none" }}
-              type="text"
-              value={protein}
-              onChange={(e) => setProtein(e.target.value)}
-              required
-            />
-          </Form.Group>
+            <Form.Group className="formInput mb-3">
+              <Form.Label>Fat</Form.Label>
+              <Form.Control
+                style={{ outline: "none", boxShadow: "none" }}
+                type="text"
+                value={fat}
+                onChange={(e) => setFat(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-          <Form.Group className="position-relative mb-3">
-            <Form.Label>File</Form.Label>
-            <Form.Control
-              type="file"
-              required
-              name="file"
-    accept="image/*"
-    onChange={(e) => setFile(e.target.files[0])}
-              
-            />
-            <Form.Control.Feedback type="invalid" tooltip>
-              
-            </Form.Control.Feedback>
-          </Form.Group>
+            <Form.Group className="formInput mb-3">
+              <Form.Label>Protein</Form.Label>
+              <Form.Control
+                style={{ outline: "none", boxShadow: "none" }}
+                type="text"
                 value={protein}
                 onChange={(e) => setProtein(e.target.value)}
                 required
