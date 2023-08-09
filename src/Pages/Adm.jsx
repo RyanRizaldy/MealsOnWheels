@@ -106,8 +106,24 @@ function Admin() {
      });
    }
  }, []);
+ const [orderList, setOrderList] = useState([]);
+  const [userLog, setUserLog] = useState(null);
 
+  useEffect(() => {
+    setUserLog(JSON.parse(sessionStorage.getItem('user')));
+    fetchOrderList();
 
+  }, []);
+
+ const fetchOrderList = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/api/order/list_order');
+    console.log(response.data)
+    setOrderList(response.data);
+  } catch (error) {
+    console.error('Error fetching order:', error);
+  }
+};
   return (
     <>
 
@@ -438,6 +454,36 @@ function Admin() {
                 </Table>
               </Row>
             </Container>
+          </Tab>
+          <Tab eventKey="Order" title="Order" className="">
+          <div>
+      <Table striped responsive className="border">
+        <thead>
+        <tr >
+                    <th>No</th>
+                    <th>Member Name</th>
+                    <th>Order No</th>
+                    <th>Partner</th>
+                    <th>Driver</th>
+                    <th>Status</th>
+                  </tr>
+        </thead>
+        <tbody>
+          {orderList.map((order,index) => (
+            <tr key={order.orderId}>
+              <td>{index + 1}</td>
+                    <td>{order.member.name}</td>
+                    <td>{order.orderId}</td>
+                    <td>{order.partnerName === null ? "-":order.partnerName}</td>
+                    <td>{order.driver === null ? "-":order.driver.name}</td>
+                    <td className="">
+                      {order.status}
+                    </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
           </Tab>
         </Tabs>
       </Container>
