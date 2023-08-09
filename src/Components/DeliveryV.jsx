@@ -30,12 +30,12 @@ function DeliveryV() {
 
     const data = {
         orderId : orderId,
-        driverId: userLog.roleData.deiverId
+        volunteerId: userLog.roleData.volunteerId
     }
 
     try {
       await axios.post(
-        `http://localhost:8080/api/order/ready_order`,
+        `http://localhost:8080/api/order/ready_order_volunteer`,
         data
       )
 
