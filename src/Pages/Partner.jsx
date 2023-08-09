@@ -65,7 +65,7 @@ const [userLog,setUserLog] = useState(null)
   },[])
 
 const [mealsName, setMealsName] = useState('');
-const [carbs, setCarbs] = useState('');
+const [carb, setCarb] = useState('');
 const [fat, setFat] = useState('');
 const [protein, setProtein] = useState('');
 const [file, setFile] = useState(null);
@@ -77,7 +77,7 @@ const handleUpload = (event) => {
   // Create form data object
   const formData = new FormData();
   formData.append('name', mealsName);
-  formData.append('carbs', carbs);
+  formData.append('carb', carb);
   formData.append('fat', fat);
   formData.append('protein', protein);
   formData.append('fileImage', file);
@@ -279,12 +279,12 @@ const handleUpload = (event) => {
           
 
           <Form.Group className="formInput mb-3">
-            <Form.Label>Carbs</Form.Label>
+            <Form.Label>carb</Form.Label>
             <Form.Control
               style={{ outline: "none", boxShadow: "none" }}
               type="text"
-              value={carbs}
-              onChange={(e) => setCarbs(e.target.value)}
+              value={carb}
+              onChange={(e) => setCarb(e.target.value)}
               required
             />
           </Form.Group>
